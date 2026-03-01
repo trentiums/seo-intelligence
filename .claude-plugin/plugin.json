@@ -59,6 +59,14 @@
         {
             "title": "Keyword Strategy & Clustering",
             "description": "Group related keywords by SERP overlap to build content clusters. Detect keyword cannibalization where multiple pages compete for the same keyword."
+        },
+        {
+            "title": "Answer Engine Optimization (AEO)",
+            "description": "Check if your domain is cited as a source in AI search engines like Perplexity, ChatGPT, and Google SGE for target queries."
+        },
+        {
+            "title": "Entity & Semantic SEO",
+            "description": "Map your target topics to official Google Knowledge Graph entities to improve semantic relevance and build topical authority."
         }
     ],
     "features": [
@@ -109,6 +117,18 @@
         {
             "title": "Cannibalization Detection",
             "description": "Find keywords where multiple pages from the same domain compete against each other, with severity ratings and fix recommendations."
+        },
+        {
+            "title": "AI Citation & AEO Check",
+            "description": "Evaluate Answer Engine Optimization (AEO) visibility across Perplexity, OpenAI, and Google SGE."
+        },
+        {
+            "title": "Entity SEO Analysis",
+            "description": "Verify official entities via Google Knowledge Graph to strengthen schema markup and entity associations."
+        },
+        {
+            "title": "Predictive Keyword Difficulty",
+            "description": "Estimate ranking difficulty (0-100) based on SERP analysis, with ROI and timeline projections."
         }
     ],
     "capabilities": {
@@ -124,6 +144,24 @@
                 "description": "SerpAPI key for SERP data (100 free searches/month)",
                 "required": false,
                 "signup_url": "https://serpapi.com/users/sign_up?source=seo-intelligence"
+            },
+            {
+                "name": "PERPLEXITY_API_KEY",
+                "description": "Perplexity API key for AEO visibility tracking (Optional)",
+                "required": false,
+                "signup_url": "https://www.perplexity.ai/settings/api"
+            },
+            {
+                "name": "OPENAI_API_KEY",
+                "description": "OpenAI API key for ChatGPT AEO analysis (Optional)",
+                "required": false,
+                "signup_url": "https://platform.openai.com/"
+            },
+            {
+                "name": "GOOGLE_CLOUD_API_KEY",
+                "description": "Google Cloud API key for Knowledge Graph (Optional)",
+                "required": false,
+                "signup_url": "https://console.cloud.google.com/"
             }
         ]
     },

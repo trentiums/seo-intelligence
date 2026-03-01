@@ -104,6 +104,9 @@ After saving the config, restart Claude Desktop. You should see the SEO Intellig
 | `content_brief` | Generate a content brief from competitor analysis | Yes (SerpAPI) |
 | `keyword_cluster` | Group related keywords by SERP overlap | Yes (SerpAPI) |
 | `detect_keyword_cannibalization` | Find pages competing for the same keywords | Yes (SerpAPI) |
+| `check_aeo_visibility` | Check AI Answer Engine Optimization (AEO) | Optional |
+| `analyze_entity` | Search Google Knowledge Graph for entity validation | Optional |
+| `predict_keyword_difficulty` | Estimate ranking difficulty and traffic potential | Yes (SerpAPI) |
 
 ## Example Prompts
 
@@ -131,6 +134,12 @@ Try these in Claude:
 "Cluster these keywords: cold brew coffee, iced coffee, cold brew recipe, cold brew vs iced coffee"
 
 "Check if example.com has keyword cannibalization for: coffee maker, best coffee maker, coffee maker reviews"
+
+"Check AEO visibility for my domain example.com for the keyword 'best coffee maker'"
+
+"Find the Knowledge Graph entity for 'Starbucks'"
+
+"Predict keyword difficulty for 'how to make cold brew at home'"
 ```
 
 ## API Keys

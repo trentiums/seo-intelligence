@@ -242,3 +242,37 @@ class CannibalizationIssue:
     conflicting_urls: list[str] = field(default_factory=list)
     severity: str = "medium"  # "low", "medium", "high"
     recommendation: str = ""
+
+
+# ─── Phase 3 Models ─────────────────────────────────────────────────────────
+
+@dataclass
+class AeoAnalysisResult:
+    """AEO visibility tracking for a keyword across AI engines."""
+    keyword: str
+    ai_engine: str  # "perplexity", "openai", "sge"
+    is_cited: bool
+    cited_urls: list[str] = field(default_factory=list)
+    recommendations: str = ""
+    error: str = ""
+
+@dataclass
+class EntityAnalysisResult:
+    """Knowledge Graph entity verification."""
+    entity_name: str
+    description: str = ""
+    kg_mid: str = ""  # Knowledge Graph ID
+    wikipedia_url: str = ""
+    confidence_score: float = 0.0
+    recommendations: str = ""
+    error: str = ""
+
+@dataclass
+class PredictiveScoring:
+    """Keyword difficulty and traffic estimation."""
+    keyword: str
+    difficulty_score: int = 0  # 0-100
+    estimated_traffic: int = 0
+    roi_projection: str = ""
+    error: str = ""
+

@@ -32,6 +32,9 @@ from content import (
     format_keyword_clusters,
     format_cannibalization_report,
 )
+from ai_search import analyze_aeo_visibility, format_aeo_report
+from entity import verify_entity, format_entity_report
+from predictive import calculate_keyword_difficulty, format_predictive_report
 from models import PageAnalysis
 
 
@@ -371,6 +374,24 @@ async def check_api_keys() -> str:
             "signup_url": "https://serpapi.com/users/sign_up?source=seo-intelligence",
             "free_tier": "100 searches/month free",
         },
+        "PERPLEXITY_API_KEY": {
+            "description": "Perplexity — AI Citation & AEO Visibility tracking",
+            "required": False,
+            "signup_url": "https://www.perplexity.ai/settings/api",
+            "free_tier": "Paid API ($5 min deposit)",
+        },
+        "OPENAI_API_KEY": {
+            "description": "OpenAI — ChatGPT AEO evaluation",
+            "required": False,
+            "signup_url": "https://platform.openai.com/",
+            "free_tier": "Paid API",
+        },
+        "GOOGLE_CLOUD_API_KEY": {
+            "description": "Google Cloud — Knowledge Graph Entity Verification",
+            "required": False,
+            "signup_url": "https://console.cloud.google.com/",
+            "free_tier": "Free tier covers most usage",
+        },
     }
 
     lines = [
@@ -420,7 +441,10 @@ async def check_api_keys() -> str:
             '      "command": "uv",',
             '      "args": ["--directory", "C:/path/to/seo-plugin", "run", "server.py"],',
             '      "env": {',
-            '        "SERPAPI_KEY": "your_key_here"',
+            '        "SERPAPI_KEY": "your_serpapi_key_here",',
+            '        "PERPLEXITY_API_KEY": "your_optional_perplexity_key",',
+            '        "OPENAI_API_KEY": "your_optional_openai_key",',
+            '        "GOOGLE_CLOUD_API_KEY": "your_optional_google_key"',
             '      }',
             '    }',
             '  }',
@@ -621,6 +645,84 @@ async def detect_keyword_cannibalization(domain: str, keywords: list[str]) -> st
 
     except Exception as e:
         return f"❌ Cannibalization detection failed: {str(e)}"
+
+
+# ─── Tool 13: check_aeo_visibility ───────────────────────────────────────────
+
+
+@mcp.tool()
+async def check_aeo_visibility(domain: str, keyword: str) -> str:
+    """Check AI Search Engine citation status (AEO) for a domain.
+
+    Queries AI search engines (Perplexity, OpenAI, Google SGE) to see
+    if the specified domain is cited as a source for the keyword.
+    
+    This helps measure Answer Engine Optimization (AEO) performance.
+
+    Args:
+        domain: Your domain to check (e.g., "example.com")
+        keyword: The target keyword or question
+
+    Returns:
+        A report showing visibility across available AI engines.
+    """
+    try:
+        results = await analyze_aeo_visibility(domain, keyword)
+        return format_aeo_report(domain, keyword, results)
+    except Exception as e:
+        return f"❌ AEO check failed: {str(e)}"
+
+
+# ─── Tool 14: analyze_entity ─────────────────────────────────────────────────
+
+
+@mcp.tool()
+async def analyze_entity(keyword: str) -> str:
+    """Verify an entity in the Google Knowledge Graph.
+
+    Searches the official Google Knowledge Graph for a keyword or entity name.
+    Returns the Knowledge Graph MID (Machine Readable Entity ID), description,
+    and associated Wikipedia URL if found.
+    
+    This is critical for Entity SEO — mapping content to recognized
+    concepts using schema markup properly.
+
+    Args:
+        keyword: The entity name or concept to search (e.g., "Starbucks")
+
+    Returns:
+        Structured Knowledge Graph information and schema recommendations.
+    """
+    try:
+        results = await verify_entity(keyword)
+        return format_entity_report(keyword, results)
+    except Exception as e:
+        return f"❌ Entity analysis failed: {str(e)}"
+
+
+# ─── Tool 15: predict_keyword_difficulty ─────────────────────────────────────
+
+
+@mcp.tool()
+async def predict_keyword_difficulty(keyword: str) -> str:
+    """Predict SEO ranking difficulty and traffic potential for a keyword.
+
+    Analyzes the top 10 search results to estimate how hard it will be
+    to rank (0-100 score). Looks at competitor title optimization and
+    domain authority markers. Provides an ROI projection and timeline.
+
+    Args:
+        keyword: The target keyword to analyze
+
+    Returns:
+        Difficulty score, heuristics, and estimated ranking timeline.
+    """
+    try:
+        serp_response = await search_keyword(keyword, num_results=10)
+        score = await calculate_keyword_difficulty(keyword, serp_response)
+        return format_predictive_report(score)
+    except Exception as e:
+        return f"❌ Predictive analysis failed: {str(e)}"
 
 
 # ─── Entry Point ─────────────────────────────────────────────────────────────
