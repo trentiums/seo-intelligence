@@ -107,6 +107,9 @@ After saving the config, restart Claude Desktop. You should see the SEO Intellig
 | `check_aeo_visibility` | Check AI Answer Engine Optimization (AEO) | Optional |
 | `analyze_entity` | Search Google Knowledge Graph for entity validation | Optional |
 | `predict_keyword_difficulty` | Estimate ranking difficulty and traffic potential | Yes (SerpAPI) |
+| `analyze_local_seo` | Check business presence in Google Local 3-Pack | Yes (SerpAPI) |
+| `generate_local_geo_tags` | Create standard HTML geo meta tags for location | No |
+| `generate_citation_opportunities` | Get specialized local citation & NAP directory lists | No |
 
 ## Example Prompts
 
@@ -140,6 +143,12 @@ Try these in Claude:
 "Find the Knowledge Graph entity for 'Starbucks'"
 
 "Predict keyword difficulty for 'how to make cold brew at home'"
+
+"Analyze local SEO for 'Starbucks' in 'Seattle, WA' for keywords: 'coffee shop', 'cafe'"
+
+"Generate geo tags for my business at latitude 30.2672 and longitude -97.7431 in Austin, TX"
+
+"Give me citation opportunities for a Dental Clinic named 'Austin Smiles' at '123 Congress Ave' phone '555-0199'"
 ```
 
 ## API Keys

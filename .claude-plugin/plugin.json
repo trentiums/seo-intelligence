@@ -129,6 +129,18 @@
         {
             "title": "Predictive Keyword Difficulty",
             "description": "Estimate ranking difficulty (0-100) based on SERP analysis, with ROI and timeline projections."
+        },
+        {
+            "title": "Local SEO & 3-Pack Analysis",
+            "description": "Check if a business appears in the Google Local Pack for target keywords in a specific city/region."
+        },
+        {
+            "title": "Local Citation Builder",
+            "description": "Curate a specialized list of directory citations to build with consistent NAP details based on business category."
+        },
+        {
+            "title": "Geo Meta Tag Generator",
+            "description": "Generate standard HTML geo location tags (geo.region, geo.position) for websites to improve local search visibility."
         }
     ],
     "capabilities": {

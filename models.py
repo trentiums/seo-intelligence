@@ -273,6 +273,45 @@ class PredictiveScoring:
     keyword: str
     difficulty_score: int = 0  # 0-100
     estimated_traffic: int = 0
-    roi_projection: str = ""
     error: str = ""
 
+
+# ─── Phase 4 Models ─────────────────────────────────────────────────────────
+
+@dataclass
+class LocalRankingResult:
+    """Local pack ranking result."""
+    keyword: str
+    location: str
+    rank_in_local_pack: int  # 1, 2, 3, or None if not found
+    business_name: str
+    rating: float = 0.0
+    reviews: int = 0
+    error: str = ""
+
+@dataclass
+class GeoTag:
+    """Generated Geo Meta Tags."""
+    latitude: str
+    longitude: str
+    region: str
+    placename: str
+    html_tags: str = ""
+
+@dataclass
+class CitationOpportunity:
+    """A directory citation to build."""
+    directory_name: str
+    domain: str
+    authority_score: int
+    category: str
+    recommended_nap: str = ""
+
+@dataclass
+class LocalSeoReport:
+    """Comprehensive local SEO report."""
+    business_name: str
+    target_location: str
+    rankings: list[LocalRankingResult] = field(default_factory=list)
+    recommendations: str = ""
+    error: str = ""

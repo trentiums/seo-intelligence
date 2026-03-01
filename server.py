@@ -35,6 +35,14 @@ from content import (
 from ai_search import analyze_aeo_visibility, format_aeo_report
 from entity import verify_entity, format_entity_report
 from predictive import calculate_keyword_difficulty, format_predictive_report
+from local_seo import (
+    analyze_local_rankings, 
+    generate_geo_tags, 
+    generate_citation_list,
+    format_local_seo_report,
+    format_geo_tags,
+    format_citations
+)
 from models import PageAnalysis
 
 
@@ -723,6 +731,80 @@ async def predict_keyword_difficulty(keyword: str) -> str:
         return format_predictive_report(score)
     except Exception as e:
         return f"❌ Predictive analysis failed: {str(e)}"
+
+
+# ─── Tool 16: analyze_local_seo ──────────────────────────────────────────────
+
+
+@mcp.tool()
+async def analyze_local_seo(business_name: str, keywords: list[str], location: str) -> str:
+    """Analyze a business's local search presence in the Google Local 3-Pack.
+
+    Takes a business name, a target location, and keywords to query 
+    Google. It checks if the business appears in the map pack (Local 3-Pack),
+    extracting its rank, rating, and review counts.
+
+    Args:
+        business_name: The name of the business (e.g., "Starbucks")
+        keywords: A list of target keywords (e.g., ["coffee shop", "cafe"])
+        location: Target geographic location (e.g., "Seattle, WA", "10001, US")
+
+    Returns:
+        A report with Local Pack rankings and recommendations.
+    """
+    try:
+        report = await analyze_local_rankings(business_name, keywords, location)
+        return format_local_seo_report(report)
+    except Exception as e:
+        return f"❌ Local SEO analysis failed: {str(e)}"
+
+
+# ─── Tool 17: generate_local_geo_tags ────────────────────────────────────────
+
+
+@mcp.tool()
+def generate_local_geo_tags(latitude: str, longitude: str, region: str, placename: str) -> str:
+    """Generate geographical meta tags (geo tags) for a local business website.
+
+    Local search relies on explicit location markers. These HTML <meta> tags 
+    should be injected into the <head> of the website to help search engines 
+    understand the exact physical location of the business.
+
+    Args:
+        latitude: The latitude of the business (e.g., "30.2672")
+        longitude: The longitude of the business (e.g., "-97.7431")
+        region: The standard ISO-3166 region code (e.g., "US-TX")
+        placename: The city/town name (e.g., "Austin")
+
+    Returns:
+        Formatted HTML meta tags ready to be copy-pasted.
+    """
+    geo = generate_geo_tags(latitude, longitude, region, placename)
+    return format_geo_tags(geo)
+
+
+# ─── Tool 18: generate_citation_opportunities ────────────────────────────────
+
+
+@mcp.tool()
+def generate_citation_opportunities(business_category: str, name: str, address: str, phone: str) -> str:
+    """Generate a prioritized list of local directories for citation building.
+
+    Local SEO requires consistent NAP (Name, Address, Phone) data across 
+    reputable directories. This tool automatically curates a high-authority 
+    list of directories relevant to the business category to build citations on.
+
+    Args:
+        business_category: The industry category (e.g., "Restaurant", "Dentist", "Law Firm")
+        name: The exact business name
+        address: The exact business address
+        phone: The exact business phone number
+
+    Returns:
+        A prioritized citation building plan and exact NAP block.
+    """
+    citations = generate_citation_list(business_category, name, address, phone)
+    return format_citations(citations)
 
 
 # ─── Entry Point ─────────────────────────────────────────────────────────────
