@@ -43,6 +43,7 @@ from local_seo import (
     format_geo_tags,
     format_citations
 )
+from ecommerce_seo import analyze_product_seo, format_ecommerce_report
 from models import PageAnalysis
 
 
@@ -805,6 +806,30 @@ def generate_citation_opportunities(business_category: str, name: str, address: 
     """
     citations = generate_citation_list(business_category, name, address, phone)
     return format_citations(citations)
+
+
+# ─── Tool 19: analyze_product_seo ──────────────────────────────────────────────
+
+
+@mcp.tool()
+async def analyze_product_seo(url: str) -> str:
+    """Analyze an e-commerce product page's SEO and JSON-LD schema.
+
+    Crawls a product page specifically looking for Product Schema markup.
+    Validates the schema against Google Merchant Center and Rich Result 
+    requirements, highlighting missing critical fields (price, rating, stock).
+
+    Args:
+        url: The full URL to the product page.
+
+    Returns:
+        An E-commerce Product SEO analysis report.
+    """
+    try:
+        report = await analyze_product_seo(url)
+        return format_ecommerce_report(report)
+    except Exception as e:
+        return f"❌ Product SEO analysis failed: {str(e)}"
 
 
 # ─── Entry Point ─────────────────────────────────────────────────────────────

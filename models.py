@@ -315,3 +315,25 @@ class LocalSeoReport:
     rankings: list[LocalRankingResult] = field(default_factory=list)
     recommendations: str = ""
     error: str = ""
+
+@dataclass
+class ProductSchemaResult:
+    """Product JSON-LD schema analysis."""
+    name: str = ""
+    price: float = 0.0
+    currency: str = ""
+    availability: str = ""
+    rating: float = 0.0
+    review_count: int = 0
+    missing_fields: list[str] = field(default_factory=list)
+
+@dataclass
+class EcommerceSeoReport:
+    """Comprehensive e-commerce SEO report."""
+    url: str
+    product_name: str = ""
+    schema_status: str = "Missing"  # "Valid", "Incomplete", "Missing"
+    schema_details: ProductSchemaResult = field(default_factory=ProductSchemaResult)
+    recommendations: str = ""
+    error: str = ""
+

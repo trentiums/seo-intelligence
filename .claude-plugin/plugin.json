@@ -141,6 +141,10 @@
         {
             "title": "Geo Meta Tag Generator",
             "description": "Generate standard HTML geo location tags (geo.region, geo.position) for websites to improve local search visibility."
+        },
+        {
+            "title": "E-commerce Product SEO",
+            "description": "Crawl product pages and validate JSON-LD Product schema against Google Merchant Center and Rich Result requirements. Flags missing fields like price, rating, and availability."
         }
     ],
     "capabilities": {

@@ -110,6 +110,7 @@ After saving the config, restart Claude Desktop. You should see the SEO Intellig
 | `analyze_local_seo` | Check business presence in Google Local 3-Pack | Yes (SerpAPI) |
 | `generate_local_geo_tags` | Create standard HTML geo meta tags for location | No |
 | `generate_citation_opportunities` | Get specialized local citation & NAP directory lists | No |
+| `analyze_product_seo` | Validate e-commerce Product JSON-LD schema | No |
 
 ## Example Prompts
 
@@ -149,6 +150,8 @@ Try these in Claude:
 "Generate geo tags for my business at latitude 30.2672 and longitude -97.7431 in Austin, TX"
 
 "Give me citation opportunities for a Dental Clinic named 'Austin Smiles' at '123 Congress Ave' phone '555-0199'"
+
+"Analyze product SEO for https://mystore.com/products/organic-matcha"
 ```
 
 ## API Keys
