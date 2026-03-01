@@ -196,22 +196,25 @@ uv run pytest tests/ -v
 
 ```
 seo-intelligence/
-├── server.py        # MCP entry point — 12 tools
-├── crawler.py       # Page crawling & HTML parsing
-├── serp.py          # SerpAPI integration
-├── analyzer.py      # Gap analysis, scoring, plans, intent classification
-├── technical.py     # Technical SEO audit (sitemap, robots, SSL, redirects)
-├── content.py       # Content briefs, keyword clustering, cannibalization
-├── models.py        # Data models (dataclasses)
-├── pyproject.toml   # Dependencies
-├── README.md        # This file
-├── .env.example     # API key template
-└── tests/
-    ├── test_crawler.py
-    ├── test_analyzer.py
-    ├── test_serp.py
-    ├── test_technical.py
-    └── test_content.py
+├── server.py               # MCP entry point — 22 tools
+├── crawler.py              # Page crawling & HTML parsing
+├── serp.py                 # SerpAPI integration
+├── analyzer.py             # Gap analysis, scoring, plans, intent classification
+├── technical.py            # Technical SEO audit (sitemap, robots, SSL, redirects)
+├── content.py              # Content briefs, keyword clustering, cannibalization
+├── ai_search.py            # AI Answer Engine Optimization (AEO) visibility
+├── entity.py               # Knowledge Graph entity validation
+├── predictive.py           # Ranking difficulty and ROI prediction
+├── local_seo.py            # Local SEO & Google Business Profile checks
+├── ecommerce_seo.py        # Product Schema & e-commerce validation
+├── accessibility_seo.py    # WCAG 2.1 AA HTML accessibility audits
+├── media_seo.py            # Video and Voice Schema validation
+├── international_seo.py    # Hreflang and HTML lang attributes
+├── models.py               # Data models (dataclasses)
+├── pyproject.toml          # Dependencies
+├── README.md               # This file
+├── .env.example            # API key template
+└── tests/                  # Exhaustive pytest suite (142+ tests)
 ```
 
 ## Contributing
