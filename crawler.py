@@ -341,3 +341,28 @@ def format_page_analysis(analysis: PageAnalysis) -> str:
     ])
 
     return "\n".join(lines)
+
+
+def extract_schema_data(html: str) -> list[dict]:
+    """Parse raw HTML and extract all JSON-LD schema objects as dictionaries."""
+    soup = BeautifulSoup(html, 'html.parser')
+    schemas = []
+    
+    for script in soup.find_all('script', type='application/ld+json'):
+        if not script.string:
+            continue
+        try:
+            data = json.loads(script.string)
+            if isinstance(data, dict):
+                # Ensure it's a schema.org graph or standard object
+                if '@graph' in data:
+                    schemas.extend(data['@graph'])
+                else:
+                    schemas.append(data)
+            elif isinstance(data, list):
+                schemas.extend(data)
+        except json.JSONDecodeError:
+            continue
+            
+    return schemas
+

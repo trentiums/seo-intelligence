@@ -273,6 +273,7 @@ class PredictiveScoring:
     keyword: str
     difficulty_score: int = 0  # 0-100
     estimated_traffic: int = 0
+    roi_projection: str = ""
     error: str = ""
 
 
