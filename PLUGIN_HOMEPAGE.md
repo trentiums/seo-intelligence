@@ -74,6 +74,10 @@ Ensure your multimedia content is discoverable. Validates `VideoObject` schema f
 ### 🌍 International SEO
 Check your website's global readiness by parsing `<html lang>` declarations and validating `hreflang` clusters (including `x-default` catch-alls and self-referencing tags).
 
+## Advanced Workflows
+
+To see how to combine the 22 tools below for massive impact (like recovering from an Algorithm Update, launching a global multi-lingual site, or dominating Local Maps), **check out [The Ultimate Playbook: SEO Workflows](./WORKFLOWS.md)**!
+
 ---
 
 ## Use Cases

@@ -115,6 +115,15 @@ After saving the config, restart Claude Desktop. You should see the SEO Intellig
 | `analyze_media_seo` | Validate VideoObject and Speakable schema for rich snippets | No |
 | `analyze_international_seo` | Validate HTML lang and hreflang schema for multi-lingual sites | No |
 
+## Quick Start
+
+Once the server is running, you can ask Claude to:
+1. "Audit the SEO of example.com for the keyword 'best widgets'"
+2. "Analyze the top 5 competitors for 'how to make coffee'"
+3. "Generate an SEO action plan for my new blog post at example.com/blog"
+
+💡 **Want to see advanced use cases?** Check out [The Ultimate Playbook: SEO Intelligence Workflows](./WORKFLOWS.md) to see how to chain our 22 tools together for Local SEO dominance, E-commerce blitzes, and post-algorithm ranking rescues!
+
 ## Example Prompts
 
 Try these in Claude:
