@@ -59,6 +59,15 @@ Verify official Google Knowledge Graph entities and generate schema markup recom
 ### 📈 Predictive Keyword Analytics
 Estimate ranking difficulty, projected traffic, and ROI timelines based on deep competitor and domain authority analysis.
 
+### 📍 Local SEO & Citations
+Check your business ranking in the Google Local 3-Pack, generate exact HTML Geo tags, and get a customized list of top citation directories to ensure NAP consistency.
+
+### 🛒 E-commerce SEO
+Analyze product pages to validate JSON-LD Product schema against Google Merchant Center and Rich Result guidelines, flagging missing prices, stock, or ratings.
+
+### ♿ Accessibility & UX
+Evaluate any webpage for WCAG 2.1 AA accessibility and UX factors that impact Google Page Experience signals (missing alt tags, empty links, restrictive viewports).
+
 ---
 
 ## Use Cases
@@ -181,6 +190,11 @@ Cluster these keywords: "cold brew coffee", "iced coffee", "cold brew recipe". T
 | `check_aeo_visibility` | Check AI Answer Engine Optimization (AEO) | Optional (Perplexity/OpenAI) |
 | `analyze_entity` | Search Google Knowledge Graph for entity validation | Optional (Google Cloud) |
 | `predict_keyword_difficulty` | Estimate ranking difficulty and traffic potential | Yes (SerpAPI) |
+| `analyze_local_seo` | Check business presence in Google Local 3-Pack | Yes (SerpAPI) |
+| `generate_local_geo_tags` | Create standard HTML geo meta tags for location | No |
+| `generate_citation_opportunities` | Get specialized local citation & NAP directory lists | No |
+| `analyze_product_seo` | Validate e-commerce Product JSON-LD schema | No |
+| `analyze_accessibility` | Audit webpage for WCAG 2.1 AA accessibility and UX | No |
 
 ---
 
@@ -193,12 +207,12 @@ SEO Intelligence uses a **zero-cost architecture**. The plugin itself is **100% 
 | Service | Cost to You | What It Powers |
 |---------|-------------|----------------|
 | Claude | Your existing Anthropic plan | Running the plugin |
-| SerpAPI | Free tier: 100 searches/month | SERP data, competitor discovery |
+| SerpAPI | Free tier: 100 searches/month | SERP data, competitor discovery, Local Pack |
 | Perplexity (Optional) | Paid API | AEO visibility checking |
 | OpenAI (Optional) | Paid API | ChatGPT indexing evaluation |
 | Google Cloud (Optional) | Free tier | Knowledge Graph Entity validation |
 
-> **4 tools work with zero configuration** — `analyze_page`, `quick_wins`, `check_api_keys`, and `technical_seo_audit` require no API keys at all.
+> **8 tools work with zero configuration** — `analyze_page`, `quick_wins`, `check_api_keys`, `technical_seo_audit`, `generate_local_geo_tags`, `generate_citation_opportunities`, `analyze_product_seo`, and `analyze_accessibility` require no API keys at all.
 
 ---
 
