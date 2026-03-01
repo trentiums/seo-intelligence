@@ -46,6 +46,7 @@ from local_seo import (
 from ecommerce_seo import analyze_product_seo, format_ecommerce_report
 from accessibility_seo import analyze_accessibility, format_accessibility_report
 from media_seo import analyze_media_seo, format_media_report
+from international_seo import analyze_international_seo, format_international_report
 from models import PageAnalysis
 
 
@@ -882,6 +883,31 @@ async def analyze_media_seo(url: str) -> str:
         return format_media_report(report)
     except Exception as e:
         return f"❌ Media SEO analysis failed: {str(e)}"
+
+
+# ─── Tool 22: analyze_international_seo ──────────────────────────────────────
+
+
+@mcp.tool()
+async def analyze_international_seo(url: str) -> str:
+    """Analyze a webpage's International SEO tags (hreflang and HTML lang).
+
+    Crawls a webpage to parse and validate `<html lang>` attributes and 
+    all `<link rel="alternate" hreflang="x">` tags. Checks for self-referencing 
+    tags and the recommended `x-default` catch-all tag to ensure correct 
+    global and regional indexing by search engines.
+
+    Args:
+        url: The full URL to analyze.
+
+    Returns:
+        An International SEO report detailing hreflang configurations and warnings.
+    """
+    try:
+        report = await analyze_international_seo(url)
+        return format_international_report(report)
+    except Exception as e:
+        return f"❌ International SEO analysis failed: {str(e)}"
 
 
 # ─── Entry Point ─────────────────────────────────────────────────────────────

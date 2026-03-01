@@ -386,5 +386,25 @@ class MediaSeoReport:
     recommendations: str = ""
     error: str = ""
 
+@dataclass
+class HreflangData:
+    """An hreflang implementation found on the page."""
+    url: str
+    language: str
+    region: str = ""
+    is_x_default: bool = False
+
+@dataclass
+class InternationalSeoReport:
+    """Comprehensive International SEO report."""
+    url: str
+    html_lang: str = ""
+    hreflang_tags: list[HreflangData] = field(default_factory=list)
+    has_x_default: bool = False
+    has_self_referencing: bool = False
+    recommendations: str = ""
+    error: str = ""
+
+
 
 

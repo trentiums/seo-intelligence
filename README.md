@@ -113,6 +113,7 @@ After saving the config, restart Claude Desktop. You should see the SEO Intellig
 | `analyze_product_seo` | Validate e-commerce Product JSON-LD schema | No |
 | `analyze_accessibility` | Audit webpage for WCAG 2.1 AA accessibility and UX | No |
 | `analyze_media_seo` | Validate VideoObject and Speakable schema for rich snippets | No |
+| `analyze_international_seo` | Validate HTML lang and hreflang schema for multi-lingual sites | No |
 
 ## Example Prompts
 
@@ -158,6 +159,8 @@ Try these in Claude:
 "Run an accessibility audit on https://mywebsite.com"
 
 "Check the video and voice search SEO on https://myblog.com/how-to-tie-a-tie"
+
+"Check the international SEO hreflang tags on https://mystore.com/en-us"
 ```
 
 ## API Keys

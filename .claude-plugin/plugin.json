@@ -153,6 +153,10 @@
         {
             "title": "Video & Voice Search SEO",
             "description": "Validate VideoObject and Speakable JSON-LD schema markup to ensure readiness for Google Video Carousels and Google Assistant voice search."
+        },
+        {
+            "title": "International SEO",
+            "description": "Extract and validate HTML lang attributes and hreflang tags to ensure correct global and regional indexing by search engines."
         }
     ],
     "capabilities": {
