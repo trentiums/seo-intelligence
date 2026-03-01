@@ -337,3 +337,22 @@ class EcommerceSeoReport:
     recommendations: str = ""
     error: str = ""
 
+@dataclass
+class WcagViolation:
+    """A WCAG accessibility violation found on the page."""
+    rule_id: str
+    description: str
+    severity: str  # "Error", "Warning"
+    element_html: str = ""
+
+@dataclass
+class AccessibilityReport:
+    """Comprehensive accessibility and UX report."""
+    url: str
+    score: int = 0  # 0-100
+    passing_checks: int = 0
+    violations: list[WcagViolation] = field(default_factory=list)
+    recommendations: str = ""
+    error: str = ""
+
+

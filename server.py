@@ -44,6 +44,7 @@ from local_seo import (
     format_citations
 )
 from ecommerce_seo import analyze_product_seo, format_ecommerce_report
+from accessibility_seo import analyze_accessibility, format_accessibility_report
 from models import PageAnalysis
 
 
@@ -830,6 +831,31 @@ async def analyze_product_seo(url: str) -> str:
         return format_ecommerce_report(report)
     except Exception as e:
         return f"❌ Product SEO analysis failed: {str(e)}"
+
+
+# ─── Tool 20: analyze_accessibility ───────────────────────────────────────────
+
+
+@mcp.tool()
+async def analyze_accessibility(url: str) -> str:
+    """Analyze a webpage for basic WCAG 2.1 AA accessibility and UX compliance.
+
+    Crawls a webpage and performs a static HTML analysis to find common 
+    accessibility violations (missing alt text, empty interactive elements, 
+    missing lang tags, restrictive viewports) that impact User Experience 
+    and SEO Page Experience signals.
+
+    Args:
+        url: The full URL to analyze.
+
+    Returns:
+        An Accessibility & UX audit report with a score and exact HTML snippets.
+    """
+    try:
+        report = await analyze_accessibility(url)
+        return format_accessibility_report(report)
+    except Exception as e:
+        return f"❌ Accessibility analysis failed: {str(e)}"
 
 
 # ─── Entry Point ─────────────────────────────────────────────────────────────

@@ -145,6 +145,10 @@
         {
             "title": "E-commerce Product SEO",
             "description": "Crawl product pages and validate JSON-LD Product schema against Google Merchant Center and Rich Result requirements. Flags missing fields like price, rating, and availability."
+        },
+        {
+            "title": "Accessibility & UX Audit",
+            "description": "Evaluate webpage accessibility (WCAG 2.1 AA) and UX metrics (missing alt text, empty links, missing forms labels, restrictive viewports) that impact Google Page Experience signals."
         }
     ],
     "capabilities": {

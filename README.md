@@ -111,6 +111,7 @@ After saving the config, restart Claude Desktop. You should see the SEO Intellig
 | `generate_local_geo_tags` | Create standard HTML geo meta tags for location | No |
 | `generate_citation_opportunities` | Get specialized local citation & NAP directory lists | No |
 | `analyze_product_seo` | Validate e-commerce Product JSON-LD schema | No |
+| `analyze_accessibility` | Audit webpage for WCAG 2.1 AA accessibility and UX | No |
 
 ## Example Prompts
 
@@ -152,6 +153,8 @@ Try these in Claude:
 "Give me citation opportunities for a Dental Clinic named 'Austin Smiles' at '123 Congress Ave' phone '555-0199'"
 
 "Analyze product SEO for https://mystore.com/products/organic-matcha"
+
+"Run an accessibility audit on https://mywebsite.com"
 ```
 
 ## API Keys
