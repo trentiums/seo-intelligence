@@ -50,6 +50,15 @@ Classify keywords (informational, transactional, etc.) and automatically generat
 ### 🔗 Keyword Strategy & Clustering
 Group related keywords by SERP overlap to build content clusters. Detect keyword cannibalization where multiple pages compete for the same keyword.
 
+### 🤖 AI Citation & AEO Tracking
+Evaluate your domain's visibility across AI search engines like Perplexity, ChatGPT, and Google SGE to measure Answer Engine Optimization (AEO) success.
+
+### 🏛️ Entity & Semantic SEO
+Verify official Google Knowledge Graph entities and generate schema markup recommendations to build topical authority.
+
+### 📈 Predictive Keyword Analytics
+Estimate ranking difficulty, projected traffic, and ROI timelines based on deep competitor and domain authority analysis.
+
 ---
 
 ## Use Cases
@@ -169,6 +178,9 @@ Cluster these keywords: "cold brew coffee", "iced coffee", "cold brew recipe". T
 | `content_brief` | Generate a content brief from competitor analysis | Yes (SerpAPI) |
 | `keyword_cluster` | Group related keywords by SERP overlap | Yes (SerpAPI) |
 | `detect_keyword_cannibalization` | Find pages competing for the same keywords | Yes (SerpAPI) |
+| `check_aeo_visibility` | Check AI Answer Engine Optimization (AEO) | Optional (Perplexity/OpenAI) |
+| `analyze_entity` | Search Google Knowledge Graph for entity validation | Optional (Google Cloud) |
+| `predict_keyword_difficulty` | Estimate ranking difficulty and traffic potential | Yes (SerpAPI) |
 
 ---
 
@@ -182,6 +194,9 @@ SEO Intelligence uses a **zero-cost architecture**. The plugin itself is **100% 
 |---------|-------------|----------------|
 | Claude | Your existing Anthropic plan | Running the plugin |
 | SerpAPI | Free tier: 100 searches/month | SERP data, competitor discovery |
+| Perplexity (Optional) | Paid API | AEO visibility checking |
+| OpenAI (Optional) | Paid API | ChatGPT indexing evaluation |
+| Google Cloud (Optional) | Free tier | Knowledge Graph Entity validation |
 
 > **4 tools work with zero configuration** — `analyze_page`, `quick_wins`, `check_api_keys`, and `technical_seo_audit` require no API keys at all.
 
@@ -214,7 +229,10 @@ Add to your Claude Desktop config (`%APPDATA%\Claude\claude_desktop_config.json`
       "command": "uv",
       "args": ["--directory", "C:/path/to/seo-plugin", "run", "server.py"],
       "env": {
-        "SERPAPI_KEY": "your_serpapi_key_here"
+        "SERPAPI_KEY": "your_serpapi_key_here",
+        "PERPLEXITY_API_KEY": "your_optional_perplexity_key",
+        "OPENAI_API_KEY": "your_optional_openai_key",
+        "GOOGLE_CLOUD_API_KEY": "your_optional_google_key"
       }
     }
   }
