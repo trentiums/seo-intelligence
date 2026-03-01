@@ -1,0 +1,16 @@
+{
+    "mcpServers": {
+        "seo-intelligence": {
+            "command": "uv",
+            "args": [
+                "--directory",
+                ".",
+                "run",
+                "server.py"
+            ],
+            "env": {
+                "SERPAPI_KEY": "${SERPAPI_KEY}"
+            }
+        }
+    }
+}

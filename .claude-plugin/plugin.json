@@ -1,0 +1,98 @@
+{
+    "name": "seo-intelligence",
+    "display_name": "SEO Intelligence",
+    "version": "1.0.0",
+    "description": "AI-powered SEO analysis, competitor comparison, and ranking plans. Analyze any page's SEO health, compare against top-ranking competitors, and get prioritized action plans to rank higher.",
+    "long_description": "SEO Intelligence turns Claude into your personal SEO analyst. Give it any URL and target keywords, and it will crawl the page, analyze on-page SEO health (title, meta, headings, content, schema, images, links), search Google SERPs to find who's ranking above you, perform a detailed competitor gap analysis, and generate a prioritized action plan to outrank the competition.\n\nBuilt with a BYOK (Bring Your Own Key) architecture — the plugin is 100% free. You provide your own SerpAPI key for SERP data (free tier: 100 searches/month). Three tools work with zero configuration and no API key required.\n\n20+ years of SEO expertise codified into algorithms: gap analysis, ranking strategies, scoring, and actionable recommendations — all accessible through natural conversation with Claude.",
+    "author": "Bhargav Patel",
+    "homepage": "https://github.com/trentiums/seo-intelligence",
+    "license": "MIT",
+    "keywords": [
+        "seo",
+        "search-engine-optimization",
+        "serp",
+        "keyword-research",
+        "competitor-analysis",
+        "on-page-seo",
+        "off-page-seo",
+        "ranking",
+        "gap-analysis"
+    ],
+    "use_cases": [
+        {
+            "title": "Blog & Content SEO Health Check",
+            "description": "Analyze any blog post or content page for SEO issues — missing meta descriptions, broken heading hierarchy, no FAQ schema, thin content — and get the 5 quickest fixes."
+        },
+        {
+            "title": "Competitive Gap Analysis",
+            "description": "Compare your page against the top 3 Google results for any keyword. See exactly where you fall short — content depth, schema markup, heading structure, link profiles — and what to fix first."
+        },
+        {
+            "title": "SEO Ranking Action Plan",
+            "description": "Generate a prioritized, step-by-step plan to rank higher for a target keyword, with specific on-page changes, effort/impact scores, and categorized recommendations."
+        },
+        {
+            "title": "Multi-Keyword Full Audit",
+            "description": "Run a comprehensive SEO audit across multiple keywords at once — get per-keyword competitor comparisons, gap analyses, individual ranking plans, and an overall site SEO score."
+        },
+        {
+            "title": "Client SEO Reporting",
+            "description": "Freelancers and agencies can generate structured, professional SEO audit reports for clients — with scores, gap analyses, and prioritized action plans — in minutes."
+        },
+        {
+            "title": "Quick Wins for New Sites",
+            "description": "Developers and site owners new to SEO can instantly discover the 5 easiest, highest-impact fixes to improve search visibility with zero SEO expertise required."
+        }
+    ],
+    "features": [
+        {
+            "title": "On-Page SEO Analysis",
+            "description": "Crawl any URL for a complete SEO health check: title, meta, headings, word count, links, images, FAQ, schema, OG tags, and SEO score (0-100)."
+        },
+        {
+            "title": "Live Google SERP Data",
+            "description": "Real-time Google search results via SerpAPI — organic rankings, SERP features, People Also Ask, and featured snippets."
+        },
+        {
+            "title": "Competitor Gap Analysis",
+            "description": "Automatically crawl top-ranking pages and compare against your page across content, structure, meta, schema, links, and images."
+        },
+        {
+            "title": "Prioritized Ranking Plans",
+            "description": "Numbered action plans with specific changes, effort levels (Easy/Medium/Hard), impact (High/Medium/Low), and categories."
+        },
+        {
+            "title": "Quick Wins",
+            "description": "Instantly surface the 5 easiest fixes with the biggest SEO impact — perfect for getting started fast."
+        },
+        {
+            "title": "Multi-Keyword Audit",
+            "description": "Comprehensive audit across multiple target keywords with per-keyword competitor analysis and overall scoring."
+        },
+        {
+            "title": "API Key Validator",
+            "description": "Verify SerpAPI configuration with setup instructions and sign-up links for missing keys."
+        }
+    ],
+    "capabilities": {
+        "mcp": true,
+        "commands": false,
+        "agents": false,
+        "skills": false
+    },
+    "requirements": {
+        "api_keys": [
+            {
+                "name": "SERPAPI_KEY",
+                "description": "SerpAPI key for SERP data (100 free searches/month)",
+                "required": false,
+                "signup_url": "https://serpapi.com/users/sign_up?source=seo-intelligence"
+            }
+        ]
+    },
+    "categories": [
+        "productivity",
+        "web",
+        "analysis"
+    ]
+}
