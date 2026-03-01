@@ -41,6 +41,15 @@ Run a comprehensive SEO audit across multiple target keywords at once. Get per-k
 ### 🔑 API Key Validator
 Verify your SerpAPI key is configured correctly before running analyses. Get setup instructions and sign-up links if anything is missing.
 
+### 🛠️ Technical SEO Infrastructure Check
+Check your site's technical SEO health — sitemap.xml, robots.txt, SSL/HTTPS, redirect chains, canonical tags, mobile readiness — and get pass/warn/fail for each check.
+
+### 🧠 Search Intent & Content Briefs
+Classify keywords (informational, transactional, etc.) and automatically generate SEO content briefs from competitor analysis — with titles, headings, word counts, and questions.
+
+### 🔗 Keyword Strategy & Clustering
+Group related keywords by SERP overlap to build content clusters. Detect keyword cannibalization where multiple pages compete for the same keyword.
+
 ---
 
 ## Use Cases
@@ -108,11 +117,23 @@ Run a full SEO audit of https://client1.com for keywords: "dental implants", "co
 ### 6. Developer Building a Website
 > *"I built a site with React/Next.js but I don't know SEO. Where do I start?"*
 
-Start with `quick_wins` to get the 5 most impactful fixes. Then use `analyze_page` for a full breakdown of what search engines see when they crawl your page — often revealing issues like missing meta tags, broken heading hierarchy, or no structured data.
+Start with `quick_wins` to get the 5 most impactful fixes, and run `technical_seo_audit` to ensure your infrastructure (SSL, robots.txt, sitemap) is correct. Then use `analyze_page` for a full breakdown of what search engines see when they crawl your page.
 
 **Example prompt:**
 ```
-Find quick SEO wins for https://myportfolio.dev and tell me what to fix first
+Find quick SEO wins and run a technical audit for https://myportfolio.dev
+```
+
+---
+
+### 7. Content Strategist
+> *"I need to plan content clusters and write briefs for the writing team."*
+
+Use `keyword_cluster` to group your keyword list by SERP overlap, ensuring you aren't creating cannibalizing pages. Then run `content_brief` on each primary keyword to get data-backed briefs with word count targets, headings, and questions to answer.
+
+**Example prompt:**
+```
+Cluster these keywords: "cold brew coffee", "iced coffee", "cold brew recipe". Then generate a content brief for "how to make cold brew coffee"
 ```
 
 ---
@@ -143,6 +164,11 @@ Find quick SEO wins for https://myportfolio.dev and tell me what to fix first
 | `quick_wins` | Top 5 easiest high-impact fixes | No |
 | `full_audit` | Complete multi-keyword SEO audit | Yes (SerpAPI) |
 | `check_api_keys` | Verify your API keys are configured | No |
+| `technical_seo_audit` | Sitemap, robots.txt, SSL, redirects, canonical checks | No |
+| `classify_intent` | Classify search intent (informational/transactional/etc.) | Yes (SerpAPI) |
+| `content_brief` | Generate a content brief from competitor analysis | Yes (SerpAPI) |
+| `keyword_cluster` | Group related keywords by SERP overlap | Yes (SerpAPI) |
+| `detect_keyword_cannibalization` | Find pages competing for the same keywords | Yes (SerpAPI) |
 
 ---
 
@@ -157,7 +183,7 @@ SEO Intelligence uses a **zero-cost architecture**. The plugin itself is **100% 
 | Claude | Your existing Anthropic plan | Running the plugin |
 | SerpAPI | Free tier: 100 searches/month | SERP data, competitor discovery |
 
-> **3 tools work with zero configuration** — `analyze_page`, `quick_wins`, and `check_api_keys` require no API keys at all.
+> **4 tools work with zero configuration** — `analyze_page`, `quick_wins`, `check_api_keys`, and `technical_seo_audit` require no API keys at all.
 
 ---
 
@@ -209,7 +235,7 @@ Restart Claude Desktop and try:
 ## FAQ
 
 ### Do I need to pay for this plugin?
-**No.** The plugin is free and open-source (MIT License). You only pay for external APIs if you choose to use SERP-based tools. 3 out of 7 tools work with zero configuration.
+**No.** The plugin is free and open-source (MIT License). You only pay for external APIs if you choose to use SERP-based tools. 4 out of 12 tools work with zero configuration.
 
 ### What is SerpAPI?
 [SerpAPI](https://serpapi.com/users/sign_up?source=seo-intelligence) provides real-time Google search results data. Their free tier gives you **100 searches/month** — enough to analyze ~30 keywords with competitor comparisons.
@@ -218,7 +244,7 @@ Restart Claude Desktop and try:
 **No.** SEO Intelligence is completely stateless. It doesn't store, log, or transmit any of your data. All analysis happens in real-time and results are returned directly to your Claude conversation.
 
 ### Can I use this without SerpAPI?
-**Yes.** `analyze_page`, `quick_wins`, and `check_api_keys` work without any API key. These tools crawl and analyze pages directly without needing SERP data.
+**Yes.** `analyze_page`, `quick_wins`, `check_api_keys`, and `technical_seo_audit` work without any API key. These tools crawl and analyze pages directly without needing SERP data.
 
 ### How accurate is the SEO score?
 The SEO score (0–100) evaluates on-page factors: meta tags, heading structure, content depth, schema markup, image optimization, internal/external links, FAQ presence, and Open Graph tags. It reflects on-page health — not domain authority or backlink strength.
