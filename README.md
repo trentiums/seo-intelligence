@@ -112,6 +112,7 @@ After saving the config, restart Claude Desktop. You should see the SEO Intellig
 | `generate_citation_opportunities` | Get specialized local citation & NAP directory lists | No |
 | `analyze_product_seo` | Validate e-commerce Product JSON-LD schema | No |
 | `analyze_accessibility` | Audit webpage for WCAG 2.1 AA accessibility and UX | No |
+| `analyze_media_seo` | Validate VideoObject and Speakable schema for rich snippets | No |
 
 ## Example Prompts
 
@@ -155,6 +156,8 @@ Try these in Claude:
 "Analyze product SEO for https://mystore.com/products/organic-matcha"
 
 "Run an accessibility audit on https://mywebsite.com"
+
+"Check the video and voice search SEO on https://myblog.com/how-to-tie-a-tie"
 ```
 
 ## API Keys

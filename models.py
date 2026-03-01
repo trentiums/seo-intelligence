@@ -355,4 +355,36 @@ class AccessibilityReport:
     recommendations: str = ""
     error: str = ""
 
+@dataclass
+class VideoSchemaResult:
+    """VideoObject JSON-LD schema analysis."""
+    name: str = ""
+    description: str = ""
+    upload_date: str = ""
+    thumbnail_url: str = ""
+    content_url: str = ""
+    embed_url: str = ""
+    duration: str = ""
+    missing_fields: list[str] = field(default_factory=list)
+
+@dataclass
+class SpeakableSchemaResult:
+    """SpeakableSpecification JSON-LD schema analysis."""
+    is_present: bool = False
+    css_selectors: list[str] = field(default_factory=list)
+    xpath: list[str] = field(default_factory=list)
+    missing_fields: list[str] = field(default_factory=list)
+
+@dataclass
+class MediaSeoReport:
+    """Comprehensive media (Video & Voice) SEO report."""
+    url: str
+    video_status: str = "Missing"  # "Valid", "Incomplete", "Missing"
+    video_details: list[VideoSchemaResult] = field(default_factory=list)
+    speakable_status: str = "Missing"  # "Valid", "Incomplete", "Missing"
+    speakable_details: SpeakableSchemaResult = field(default_factory=SpeakableSchemaResult)
+    recommendations: str = ""
+    error: str = ""
+
+
 

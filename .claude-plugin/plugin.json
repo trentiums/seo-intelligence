@@ -149,6 +149,10 @@
         {
             "title": "Accessibility & UX Audit",
             "description": "Evaluate webpage accessibility (WCAG 2.1 AA) and UX metrics (missing alt text, empty links, missing forms labels, restrictive viewports) that impact Google Page Experience signals."
+        },
+        {
+            "title": "Video & Voice Search SEO",
+            "description": "Validate VideoObject and Speakable JSON-LD schema markup to ensure readiness for Google Video Carousels and Google Assistant voice search."
         }
     ],
     "capabilities": {

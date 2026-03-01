@@ -45,6 +45,7 @@ from local_seo import (
 )
 from ecommerce_seo import analyze_product_seo, format_ecommerce_report
 from accessibility_seo import analyze_accessibility, format_accessibility_report
+from media_seo import analyze_media_seo, format_media_report
 from models import PageAnalysis
 
 
@@ -856,6 +857,31 @@ async def analyze_accessibility(url: str) -> str:
         return format_accessibility_report(report)
     except Exception as e:
         return f"❌ Accessibility analysis failed: {str(e)}"
+
+
+# ─── Tool 21: analyze_media_seo ──────────────────────────────────────────────
+
+
+@mcp.tool()
+async def analyze_media_seo(url: str) -> str:
+    """Analyze a webpage's Video and Voice Search (Speakable) SEO.
+
+    Crawls a webpage to find and validate `VideoObject` and `Speakable` 
+    JSON-LD schema. `VideoObject` is required for videos to appear in Google 
+    Video Carousels. `Speakable` allows Google Assistant to read the content 
+    aloud for voice search.
+
+    Args:
+        url: The full URL to analyze.
+
+    Returns:
+        A Media SEO report detailing Video and Speakable schema validity.
+    """
+    try:
+        report = await analyze_media_seo(url)
+        return format_media_report(report)
+    except Exception as e:
+        return f"❌ Media SEO analysis failed: {str(e)}"
 
 
 # ─── Entry Point ─────────────────────────────────────────────────────────────

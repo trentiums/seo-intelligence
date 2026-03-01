@@ -68,6 +68,9 @@ Analyze product pages to validate JSON-LD Product schema against Google Merchant
 ### ♿ Accessibility & UX
 Evaluate any webpage for WCAG 2.1 AA accessibility and UX factors that impact Google Page Experience signals (missing alt tags, empty links, restrictive viewports).
 
+### 🎬 Video & Voice Search SEO
+Ensure your multimedia content is discoverable. Validates `VideoObject` schema for Google Video Carousels and `Speakable` schema for Google Assistant voice answers.
+
 ---
 
 ## Use Cases
@@ -195,6 +198,7 @@ Cluster these keywords: "cold brew coffee", "iced coffee", "cold brew recipe". T
 | `generate_citation_opportunities` | Get specialized local citation & NAP directory lists | No |
 | `analyze_product_seo` | Validate e-commerce Product JSON-LD schema | No |
 | `analyze_accessibility` | Audit webpage for WCAG 2.1 AA accessibility and UX | No |
+| `analyze_media_seo` | Validate VideoObject and Speakable schema for rich snippets | No |
 
 ---
 
@@ -212,7 +216,7 @@ SEO Intelligence uses a **zero-cost architecture**. The plugin itself is **100% 
 | OpenAI (Optional) | Paid API | ChatGPT indexing evaluation |
 | Google Cloud (Optional) | Free tier | Knowledge Graph Entity validation |
 
-> **8 tools work with zero configuration** — `analyze_page`, `quick_wins`, `check_api_keys`, `technical_seo_audit`, `generate_local_geo_tags`, `generate_citation_opportunities`, `analyze_product_seo`, and `analyze_accessibility` require no API keys at all.
+> **9 tools work with zero configuration** — `analyze_page`, `quick_wins`, `check_api_keys`, `technical_seo_audit`, `generate_local_geo_tags`, `generate_citation_opportunities`, `analyze_product_seo`, `analyze_accessibility`, and `analyze_media_seo` require no API keys at all.
 
 ---
 
