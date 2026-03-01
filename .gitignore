@@ -28,3 +28,6 @@ htmlcov/
 
 # UV
 uv.lock
+
+# Planning (local development only)
+planning/
