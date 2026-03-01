@@ -173,3 +173,72 @@ class SeoScore:
     schema_score: int = 0
     technical_score: int = 0
     breakdown: dict[str, int] = field(default_factory=dict)
+
+
+# ─── Phase 2 Models ─────────────────────────────────────────────────────────
+
+
+@dataclass
+class TechnicalCheckResult:
+    """Result of a single technical SEO check."""
+    check: str  # e.g., "sitemap", "robots_txt", "ssl"
+    status: str  # "pass", "warn", "fail"
+    details: str = ""
+    recommendation: str = ""
+
+
+@dataclass
+class TechnicalAuditResult:
+    """Complete technical SEO audit for a URL."""
+    url: str
+    checks: list[TechnicalCheckResult] = field(default_factory=list)
+    passed: int = 0
+    warnings: int = 0
+    failed: int = 0
+    overall_status: str = ""  # "Healthy", "Needs Attention", "Critical"
+    error: str = ""
+
+
+@dataclass
+class SearchIntentResult:
+    """Search intent classification for a keyword."""
+    keyword: str
+    intent: str  # "informational", "navigational", "transactional", "commercial"
+    confidence: int = 0  # 0-100
+    reasoning: str = ""
+    recommended_content_type: str = ""  # "blog post", "product page", "landing page", etc.
+    serp_signals: list[str] = field(default_factory=list)
+
+
+@dataclass
+class ContentBrief:
+    """Auto-generated content brief for a keyword."""
+    keyword: str
+    suggested_title: str = ""
+    target_word_count: int = 0
+    suggested_headings: list[str] = field(default_factory=list)  # H2/H3 suggestions
+    questions_to_answer: list[str] = field(default_factory=list)
+    key_topics: list[str] = field(default_factory=list)
+    competitor_urls: list[str] = field(default_factory=list)
+    competitor_avg_word_count: int = 0
+    search_intent: str = ""
+    error: str = ""
+
+
+@dataclass
+class KeywordCluster:
+    """A group of related keywords that can target a single page."""
+    cluster_name: str
+    primary_keyword: str
+    related_keywords: list[str] = field(default_factory=list)
+    shared_urls: list[str] = field(default_factory=list)  # URLs that rank for multiple keywords in cluster
+    recommended_page_type: str = ""  # "pillar page", "blog post", etc.
+
+
+@dataclass
+class CannibalizationIssue:
+    """A keyword cannibalization issue where multiple pages compete."""
+    keyword: str
+    conflicting_urls: list[str] = field(default_factory=list)
+    severity: str = "medium"  # "low", "medium", "high"
+    recommendation: str = ""

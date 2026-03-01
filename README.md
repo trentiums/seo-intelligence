@@ -25,7 +25,9 @@ SEO Intelligence is a Claude plugin that turns Claude into your SEO analyst. Giv
 | **Freelance SEO Consultant** | Generate professional audit reports for clients in minutes | `full_audit` |
 | **E-Commerce Owner** | Optimize product pages to outrank competitors for buying keywords | `generate_ranking_plan` |
 | **Marketing Agency** | Run bulk audits across multiple client websites | `full_audit` (per client) |
-| **Developer** | Learn what search engines see when they crawl your site | `analyze_page`, `quick_wins` |
+| **Developer** | Check technical SEO infrastructure (sitemap, robots.txt, SSL) | `technical_seo_audit` |
+| **Content Strategist** | Generate data-backed content briefs from competitor analysis | `content_brief` |
+| **SEO Manager** | Find keyword cannibalization and build topic clusters | `keyword_cluster`, `detect_keyword_cannibalization` |
 
 > 📄 **See [PLUGIN_HOMEPAGE.md](PLUGIN_HOMEPAGE.md) for detailed use-case walkthroughs with example prompts.**
 
@@ -97,6 +99,11 @@ After saving the config, restart Claude Desktop. You should see the SEO Intellig
 | `quick_wins` | Top 5 easiest high-impact fixes | No |
 | `full_audit` | Complete multi-keyword SEO audit | Yes (SerpAPI) |
 | `check_api_keys` | Verify your API keys are configured | No |
+| `technical_seo_audit` | Sitemap, robots.txt, SSL, redirects, canonical checks | No |
+| `classify_intent` | Classify search intent (informational/transactional/etc.) | Yes (SerpAPI) |
+| `content_brief` | Generate a content brief from competitor analysis | Yes (SerpAPI) |
+| `keyword_cluster` | Group related keywords by SERP overlap | Yes (SerpAPI) |
+| `detect_keyword_cannibalization` | Find pages competing for the same keywords | Yes (SerpAPI) |
 
 ## Example Prompts
 
@@ -113,7 +120,17 @@ Try these in Claude:
 
 "Create an SEO ranking plan for https://mysite.com targeting 'coffee machine reviews'"
 
-"Run a full SEO audit of https://mysite.com for keywords: 'best coffee maker', 'coffee machine reviews', 'buy coffee maker online'"
+"Run a full SEO audit of https://mysite.com for keywords: 'best coffee maker', 'coffee machine reviews'"
+
+"Run a technical SEO audit on https://mysite.com"
+
+"What's the search intent for 'best coffee maker 2026'?"
+
+"Generate a content brief for 'how to make cold brew coffee'"
+
+"Cluster these keywords: cold brew coffee, iced coffee, cold brew recipe, cold brew vs iced coffee"
+
+"Check if example.com has keyword cannibalization for: coffee maker, best coffee maker, coffee maker reviews"
 ```
 
 ## API Keys
@@ -139,11 +156,13 @@ uv run pytest tests/ -v
 ### Project Structure
 
 ```
-seo-plugin/
-├── server.py        # MCP entry point — 7 tools
+seo-intelligence/
+├── server.py        # MCP entry point — 12 tools
 ├── crawler.py       # Page crawling & HTML parsing
 ├── serp.py          # SerpAPI integration
-├── analyzer.py      # Gap analysis, scoring, plans
+├── analyzer.py      # Gap analysis, scoring, plans, intent classification
+├── technical.py     # Technical SEO audit (sitemap, robots, SSL, redirects)
+├── content.py       # Content briefs, keyword clustering, cannibalization
 ├── models.py        # Data models (dataclasses)
 ├── pyproject.toml   # Dependencies
 ├── README.md        # This file
@@ -151,7 +170,9 @@ seo-plugin/
 └── tests/
     ├── test_crawler.py
     ├── test_analyzer.py
-    └── test_serp.py
+    ├── test_serp.py
+    ├── test_technical.py
+    └── test_content.py
 ```
 
 ## Contributing

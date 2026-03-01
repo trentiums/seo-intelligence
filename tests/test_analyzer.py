@@ -1,9 +1,9 @@
-"""Unit tests for SEO scoring, gap analysis, and plan generation."""
+"""Unit tests for SEO scoring, gap analysis, plan generation, and search intent."""
 
 import pytest
 
-from analyzer import calculate_seo_score, compare_pages, generate_action_plan, find_quick_wins
-from models import PageAnalysis, HeadingInfo, ImageInfo, FAQItem
+from analyzer import calculate_seo_score, compare_pages, generate_action_plan, find_quick_wins, classify_search_intent
+from models import PageAnalysis, HeadingInfo, ImageInfo, FAQItem, SerpResponse, SerpResult, SerpFeature
 
 
 # ─── Test Fixtures ───────────────────────────────────────────────────────────
@@ -316,3 +316,72 @@ class TestQuickWins:
         wins = find_quick_wins(page)
         meta_wins = [w for w in wins if "meta description" in w.description.lower()]
         assert len(meta_wins) > 0
+
+
+# ─── Search Intent Classification Tests ─────────────────────────────────────
+
+
+def _make_serp(keyword, feature_types=None, snippets=None):
+    """Create a SerpResponse with optional features and custom snippets."""
+    features = [SerpFeature(type=ft) for ft in (feature_types or [])]
+    results = [
+        SerpResult(
+            position=i + 1,
+            title=f"Result {i + 1}",
+            url=f"https://site{i}.com",
+            snippet=snippets[i] if snippets and i < len(snippets) else f"About {keyword}",
+        )
+        for i in range(3)
+    ]
+    return SerpResponse(
+        keyword=keyword,
+        organic_results=results,
+        serp_features=features,
+        total_results=100000,
+    )
+
+
+class TestSearchIntentClassification:
+    """Test search intent classification logic."""
+
+    def test_transactional_intent(self):
+        serp = _make_serp(
+            "buy coffee maker online",
+            feature_types=["shopping_results"],
+            snippets=["Shop the best prices now", "Buy online at $49", "Free shipping deals"],
+        )
+        result = classify_search_intent("buy coffee maker online", serp)
+        assert result.intent == "transactional"
+
+    def test_informational_intent(self):
+        serp = _make_serp(
+            "how to make cold brew coffee",
+            feature_types=["featured_snippet", "people_also_ask"],
+            snippets=["Learn how to make cold brew", "Step-by-step guide", "What is cold brew"],
+        )
+        result = classify_search_intent("how to make cold brew coffee", serp)
+        assert result.intent == "informational"
+
+    def test_navigational_intent(self):
+        serp = _make_serp(
+            "starbucks",
+            feature_types=["knowledge_panel"],
+        )
+        result = classify_search_intent("starbucks", serp)
+        assert result.intent == "navigational"
+
+    def test_commercial_intent(self):
+        serp = _make_serp(
+            "best coffee maker 2026",
+            snippets=["Top 10 best coffee makers reviewed", "Compare the best models", "Our expert review"],
+        )
+        result = classify_search_intent("best coffee maker 2026", serp)
+        assert result.intent == "commercial"
+
+    def test_intent_confidence_range(self):
+        serp = _make_serp("random query")
+        result = classify_search_intent("random query", serp)
+        assert 0 <= result.confidence <= 100
+        assert result.intent in ("informational", "navigational", "transactional", "commercial")
+        assert len(result.recommended_content_type) > 0
+

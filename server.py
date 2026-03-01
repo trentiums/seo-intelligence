@@ -1,6 +1,6 @@
 """SEO Intelligence — MCP Server Entry Point.
 
-Provides 7 SEO analysis tools to Claude via the Model Context Protocol.
+Provides 12 SEO analysis tools to Claude via the Model Context Protocol.
 Run with: uv run server.py
 """
 
@@ -20,6 +20,17 @@ from analyzer import (
     format_ranking_plan,
     format_quick_wins,
     format_seo_score,
+    classify_search_intent,
+    format_search_intent,
+)
+from technical import audit_technical_seo, format_technical_audit
+from content import (
+    generate_content_brief,
+    cluster_keywords,
+    detect_cannibalization,
+    format_content_brief,
+    format_keyword_clusters,
+    format_cannibalization_report,
 )
 from models import PageAnalysis
 
@@ -418,6 +429,198 @@ async def check_api_keys() -> str:
         ])
 
     return "\n".join(lines)
+
+
+# ─── Tool 8: technical_seo_audit ─────────────────────────────────────────────
+
+
+@mcp.tool()
+async def technical_seo_audit(url: str) -> str:
+    """Run a technical SEO audit on a URL.
+
+    Checks infrastructure-level SEO elements:
+    - Sitemap.xml presence and validity
+    - Robots.txt configuration
+    - SSL/HTTPS status and mixed content
+    - Redirect chains and loops
+    - Canonical tags, viewport meta, lang attribute, charset
+
+    Reports each check as PASS/WARN/FAIL with actionable recommendations.
+
+    Args:
+        url: The URL to audit (e.g., "https://example.com")
+
+    Returns:
+        Technical SEO audit report with pass/warn/fail for each check.
+    """
+    try:
+        result = await audit_technical_seo(url)
+        return format_technical_audit(result)
+    except Exception as e:
+        return f"❌ Technical audit failed for {url}: {str(e)}"
+
+
+# ─── Tool 9: classify_intent ─────────────────────────────────────────────────
+
+
+@mcp.tool()
+async def classify_intent(keyword: str) -> str:
+    """Classify the search intent of a keyword.
+
+    Searches Google for the keyword and analyzes SERP signals to determine
+    whether the search intent is:
+    - Informational (how-to, guides, definitions)
+    - Navigational (looking for a specific site/brand)
+    - Transactional (ready to buy/download/sign up)
+    - Commercial (comparing options, reading reviews)
+
+    Also recommends the best content type to create for the keyword.
+
+    Args:
+        keyword: The keyword to classify (e.g., "best coffee maker 2026")
+
+    Returns:
+        Intent classification with confidence score, reasoning, and content recommendation.
+    """
+    try:
+        serp_response = await search_keyword(keyword, num_results=5)
+        result = classify_search_intent(keyword, serp_response)
+        return format_search_intent(result)
+    except Exception as e:
+        return f"❌ Intent classification failed for '{keyword}': {str(e)}"
+
+
+# ─── Tool 10: content_brief ──────────────────────────────────────────────────
+
+
+@mcp.tool()
+async def content_brief(keyword: str) -> str:
+    """Generate an SEO content brief for a keyword.
+
+    Searches the keyword, analyzes top-ranking competitors, and generates
+    a detailed content brief including:
+    - Suggested title
+    - Target word count (based on competitor average)
+    - Recommended H2/H3 headings
+    - Questions to answer (from People Also Ask + competitor FAQs)
+    - Key topics to cover
+    - Search intent classification
+
+    Perfect for writers and content strategists planning new content.
+
+    Args:
+        keyword: The target keyword to create content for (e.g., "how to make cold brew coffee")
+
+    Returns:
+        A complete content brief with title, headings, word count target, and questions.
+    """
+    try:
+        # Search SERP
+        serp_response = await search_keyword(keyword, num_results=3)
+        if serp_response.error:
+            return f"❌ SERP search failed: {serp_response.error}"
+
+        # Classify intent
+        intent_result = classify_search_intent(keyword, serp_response)
+
+        # Crawl top competitors
+        competitor_pages: list[PageAnalysis] = []
+        for result in serp_response.organic_results:
+            try:
+                comp_html = await crawl_page(result.url)
+                comp_analysis = parse_page(comp_html, result.url)
+                competitor_pages.append(comp_analysis)
+            except Exception:
+                continue
+
+        if not competitor_pages:
+            return "⚠️ Could not crawl any competitor pages for brief generation."
+
+        # Generate brief
+        brief = generate_content_brief(
+            keyword, serp_response, competitor_pages, intent_result.intent
+        )
+
+        # Combine intent + brief
+        intent_report = format_search_intent(intent_result)
+        brief_report = format_content_brief(brief)
+
+        return f"{intent_report}\n\n---\n\n{brief_report}"
+
+    except Exception as e:
+        return f"❌ Content brief generation failed for '{keyword}': {str(e)}"
+
+
+# ─── Tool 11: keyword_cluster ────────────────────────────────────────────────
+
+
+@mcp.tool()
+async def keyword_cluster(keywords: list[str]) -> str:
+    """Group related keywords into clusters based on SERP overlap.
+
+    Keywords that share the same top-ranking URLs in Google likely target
+    the same search intent and can be covered by a single page.
+
+    This helps avoid creating multiple pages for the same intent
+    (keyword cannibalization) and identifies opportunities for
+    pillar/cluster content strategies.
+
+    Args:
+        keywords: List of keywords to cluster (e.g., ["cold brew coffee", "iced coffee", "cold brew recipe"])
+
+    Returns:
+        Keyword clusters with primary keywords and recommended page types.
+    """
+    try:
+        if len(keywords) < 2:
+            return "⚠️ Please provide at least 2 keywords to cluster."
+
+        # Search SERP for each keyword
+        serp_responses = []
+        for kw in keywords:
+            resp = await search_keyword(kw, num_results=5)
+            serp_responses.append(resp)
+
+        clusters = cluster_keywords(keywords, serp_responses)
+        return format_keyword_clusters(clusters)
+
+    except Exception as e:
+        return f"❌ Keyword clustering failed: {str(e)}"
+
+
+# ─── Tool 12: detect_keyword_cannibalization ─────────────────────────────────
+
+
+@mcp.tool()
+async def detect_keyword_cannibalization(domain: str, keywords: list[str]) -> str:
+    """Detect keyword cannibalization for a domain.
+
+    Checks if multiple pages from your domain are competing against each
+    other in Google for the same keywords. When two of your pages rank
+    for the same keyword, they split ranking signals and both perform worse.
+
+    Args:
+        domain: Your domain (e.g., "example.com")
+        keywords: Keywords to check for cannibalization (e.g., ["coffee maker", "best coffee maker"])
+
+    Returns:
+        Cannibalization report with conflicting URLs and recommendations.
+    """
+    try:
+        if not keywords:
+            return "⚠️ Please provide at least 1 keyword to check."
+
+        # Search SERP for each keyword
+        serp_responses = []
+        for kw in keywords:
+            resp = await search_keyword(kw, num_results=10)
+            serp_responses.append(resp)
+
+        issues = detect_cannibalization(domain, keywords, serp_responses)
+        return format_cannibalization_report(issues)
+
+    except Exception as e:
+        return f"❌ Cannibalization detection failed: {str(e)}"
 
 
 # ─── Entry Point ─────────────────────────────────────────────────────────────

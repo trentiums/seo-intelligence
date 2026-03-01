@@ -1,4 +1,6 @@
-"""Gap analysis, SEO scoring, and ranking plan generation."""
+"""Gap analysis, SEO scoring, search intent classification, and ranking plan generation."""
+
+import re
 
 from models import (
     PageAnalysis,
@@ -7,6 +9,8 @@ from models import (
     ActionItem,
     RankingPlan,
     SeoScore,
+    SerpResponse,
+    SearchIntentResult,
 )
 
 
@@ -681,6 +685,169 @@ def format_seo_score(score: SeoScore, url: str) -> str:
         f"| Technical | {score.technical_score} | 10 |",
     ]
 
+    return "\n".join(lines)
+
+
+# ─── Search Intent Classification ───────────────────────────────────────────
+
+
+def classify_search_intent(keyword: str, serp_response: SerpResponse) -> SearchIntentResult:
+    """Classify a keyword's search intent based on SERP signals.
+
+    Uses SERP features, keyword patterns, and result types to determine
+    whether the intent is informational, navigational, transactional,
+    or commercial.
+
+    Args:
+        keyword: The keyword to classify.
+        serp_response: SERP data for the keyword.
+
+    Returns:
+        SearchIntentResult with intent type, confidence, and reasoning.
+    """
+    kw_lower = keyword.lower().strip()
+    signals = []
+    scores = {
+        "informational": 0,
+        "navigational": 0,
+        "transactional": 0,
+        "commercial": 0,
+    }
+
+    # --- Keyword pattern signals ---
+    info_patterns = [
+        r"\bhow\b", r"\bwhat\b", r"\bwhy\b", r"\bwhen\b", r"\bwhere\b",
+        r"\bwho\b", r"\bguide\b", r"\btutorial\b", r"\btips\b",
+        r"\bexplain\b", r"\bdefinition\b", r"\bmean(s|ing)?\b",
+        r"\bexample(s)?\b", r"\blearn\b",
+    ]
+    for pattern in info_patterns:
+        if re.search(pattern, kw_lower):
+            scores["informational"] += 20
+            signals.append(f"Keyword contains question/informational word")
+            break
+
+    transactional_patterns = [
+        r"\bbuy\b", r"\bpurchase\b", r"\border\b", r"\bprice\b",
+        r"\bcheap\b", r"\bdeal(s)?\b", r"\bdiscount\b", r"\bcoupon\b",
+        r"\bshop(ping)?\b", r"\bfor sale\b", r"\bsubscri(be|ption)\b",
+        r"\bdownload\b", r"\bsign up\b", r"\bfree trial\b",
+    ]
+    for pattern in transactional_patterns:
+        if re.search(pattern, kw_lower):
+            scores["transactional"] += 25
+            signals.append(f"Keyword contains transactional word")
+            break
+
+    commercial_patterns = [
+        r"\bbest\b", r"\btop\b", r"\breview(s)?\b", r"\bcompare\b",
+        r"\bcomparison\b", r"\bvs\b", r"\bversus\b", r"\balternative(s)?\b",
+        r"\brecommend(ed|ation)?\b", r"\brated\b", r"\branking\b",
+    ]
+    for pattern in commercial_patterns:
+        if re.search(pattern, kw_lower):
+            scores["commercial"] += 25
+            signals.append(f"Keyword contains commercial/comparison word")
+            break
+
+    # --- SERP feature signals ---
+    if not serp_response.error:
+        feature_types = {f.type for f in serp_response.serp_features}
+
+        if "featured_snippet" in feature_types:
+            scores["informational"] += 15
+            signals.append("Featured snippet present")
+
+        if "people_also_ask" in feature_types:
+            scores["informational"] += 10
+            signals.append("People Also Ask present")
+
+        if "knowledge_panel" in feature_types:
+            scores["navigational"] += 15
+            signals.append("Knowledge panel present")
+
+        if "shopping_results" in feature_types:
+            scores["transactional"] += 20
+            signals.append("Shopping results present")
+
+        if "local_pack" in feature_types:
+            scores["transactional"] += 10
+            signals.append("Local pack present")
+
+        if "video_carousel" in feature_types:
+            scores["informational"] += 5
+            signals.append("Video carousel present")
+
+    # --- Result snippet analysis ---
+    if not serp_response.error and serp_response.organic_results:
+        snippets = " ".join(
+            r.snippet.lower() for r in serp_response.organic_results if r.snippet
+        )
+        if any(w in snippets for w in ["buy", "shop", "price", "$", "€", "£"]):
+            scores["transactional"] += 10
+            signals.append("Snippets contain purchase-related language")
+        if any(w in snippets for w in ["best", "review", "top", "compare"]):
+            scores["commercial"] += 10
+            signals.append("Snippets contain comparison language")
+        if any(w in snippets for w in ["how to", "guide", "learn", "what is"]):
+            scores["informational"] += 10
+            signals.append("Snippets contain informational language")
+
+    # --- Determine winner ---
+    if all(v == 0 for v in scores.values()):
+        # Default: informational if no signals
+        scores["informational"] = 10
+        signals.append("No strong signals detected, defaulting to informational")
+
+    intent = max(scores, key=scores.get)
+    max_score = scores[intent]
+    total_score = sum(scores.values()) or 1
+    confidence = min(int((max_score / total_score) * 100), 100)
+
+    # Recommended content type
+    content_types = {
+        "informational": "Blog post, guide, tutorial, or explainer article",
+        "navigational": "Brand/product landing page with clear navigation",
+        "transactional": "Product page, pricing page, or sign-up/download page",
+        "commercial": "Comparison article, review roundup, or 'best of' listicle",
+    }
+
+    return SearchIntentResult(
+        keyword=keyword,
+        intent=intent,
+        confidence=confidence,
+        reasoning=f"Classified as {intent} based on: {'; '.join(signals)}.",
+        recommended_content_type=content_types.get(intent, ""),
+        serp_signals=signals,
+    )
+
+
+def format_search_intent(result: SearchIntentResult) -> str:
+    """Format a SearchIntentResult into a readable string for Claude."""
+    intent_icon = {
+        "informational": "📚",
+        "navigational": "🧭",
+        "transactional": "💰",
+        "commercial": "🔍",
+    }
+    icon = intent_icon.get(result.intent, "❓")
+
+    lines = [
+        f"# Search Intent: \"{result.keyword}\"",
+        f"## {icon} Intent: {result.intent.upper()}",
+        f"**Confidence**: {result.confidence}%",
+        "",
+        f"**Reasoning**: {result.reasoning}",
+        "",
+        f"**Recommended Content Type**: {result.recommended_content_type}",
+        "",
+    ]
+
+    if result.serp_signals:
+        lines.append("## SERP Signals")
+        for signal in result.serp_signals:
+            lines.append(f"- {signal}")
+    
     return "\n".join(lines)
 
 

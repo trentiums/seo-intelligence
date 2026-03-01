@@ -1,7 +1,7 @@
 {
     "name": "seo-intelligence",
     "display_name": "SEO Intelligence",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "AI-powered SEO analysis, competitor comparison, and ranking plans. Analyze any page's SEO health, compare against top-ranking competitors, and get prioritized action plans to rank higher.",
     "long_description": "SEO Intelligence turns Claude into your personal SEO analyst. Give it any URL and target keywords, and it will crawl the page, analyze on-page SEO health (title, meta, headings, content, schema, images, links), search Google SERPs to find who's ranking above you, perform a detailed competitor gap analysis, and generate a prioritized action plan to outrank the competition.\n\nBuilt with a BYOK (Bring Your Own Key) architecture — the plugin is 100% free. You provide your own SerpAPI key for SERP data (free tier: 100 searches/month). Three tools work with zero configuration and no API key required.\n\n20+ years of SEO expertise codified into algorithms: gap analysis, ranking strategies, scoring, and actionable recommendations — all accessible through natural conversation with Claude.",
     "author": "Bhargav Patel",
@@ -16,7 +16,12 @@
         "on-page-seo",
         "off-page-seo",
         "ranking",
-        "gap-analysis"
+        "gap-analysis",
+        "technical-seo",
+        "content-strategy",
+        "search-intent",
+        "keyword-clustering",
+        "cannibalization"
     ],
     "use_cases": [
         {
@@ -42,6 +47,18 @@
         {
             "title": "Quick Wins for New Sites",
             "description": "Developers and site owners new to SEO can instantly discover the 5 easiest, highest-impact fixes to improve search visibility with zero SEO expertise required."
+        },
+        {
+            "title": "Technical SEO Infrastructure Check",
+            "description": "Check your site's technical SEO health — sitemap.xml, robots.txt, SSL/HTTPS, redirect chains, canonical tags, mobile readiness — and get pass/warn/fail for each check."
+        },
+        {
+            "title": "Content Planning & Briefs",
+            "description": "Automatically generate SEO content briefs from competitor analysis — with suggested titles, headings, word count targets, questions to answer, and key topics to cover."
+        },
+        {
+            "title": "Keyword Strategy & Clustering",
+            "description": "Group related keywords by SERP overlap to build content clusters. Detect keyword cannibalization where multiple pages compete for the same keyword."
         }
     ],
     "features": [
@@ -72,6 +89,26 @@
         {
             "title": "API Key Validator",
             "description": "Verify SerpAPI configuration with setup instructions and sign-up links for missing keys."
+        },
+        {
+            "title": "Technical SEO Audit",
+            "description": "Check sitemap.xml, robots.txt, SSL/HTTPS, redirect chains, canonical tags, viewport, lang, and charset — all with actionable recommendations."
+        },
+        {
+            "title": "Search Intent Classification",
+            "description": "Classify keywords as informational, navigational, transactional, or commercial — with confidence scores and recommended content types."
+        },
+        {
+            "title": "Content Brief Generator",
+            "description": "Auto-generate content briefs from competitor analysis: titles, headings, word count targets, questions, and key topics."
+        },
+        {
+            "title": "Keyword Clustering",
+            "description": "Group keywords by SERP URL overlap to identify which keywords can target the same page and avoid cannibalization."
+        },
+        {
+            "title": "Cannibalization Detection",
+            "description": "Find keywords where multiple pages from the same domain compete against each other, with severity ratings and fix recommendations."
         }
     ],
     "capabilities": {
