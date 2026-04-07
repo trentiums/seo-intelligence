@@ -4,12 +4,15 @@
             "command": "uv",
             "args": [
                 "--directory",
-                ".",
+                "${CLAUDE_PLUGIN_ROOT}",
                 "run",
                 "server.py"
             ],
             "env": {
-                "SERPAPI_KEY": "${SERPAPI_KEY}"
+                "SERPAPI_KEY": "${user_config.SERPAPI_KEY}",
+                "PERPLEXITY_API_KEY": "${user_config.PERPLEXITY_API_KEY}",
+                "OPENAI_API_KEY": "${user_config.OPENAI_API_KEY}",
+                "GOOGLE_CLOUD_API_KEY": "${user_config.GOOGLE_CLOUD_API_KEY}"
             }
         }
     }
