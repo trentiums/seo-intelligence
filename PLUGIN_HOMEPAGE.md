@@ -1,310 +1,436 @@
 # SEO Intelligence — Your AI-Powered SEO Analyst Inside Claude
 
-[![Anthropic Plugin](https://img.shields.io/badge/Anthropic-Plugin-blueviolet)](https://claude.ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![BYOK](https://img.shields.io/badge/Model-BYOK-orange)](https://serpapi.com)
 
-> **Turn Claude into a full-stack SEO expert.** Analyze any page, compare against competitors, and get a prioritized action plan to rank higher — all through natural conversation.
+> Turn Claude into a full-stack SEO expert. Audit pages, analyze competitors, generate ranking plans, build schema markup, cluster keywords, and track AI search visibility — all through natural conversation.
+
+**No dashboards. No learning curve. Just type.**
 
 ---
 
 ## What is SEO Intelligence?
 
-SEO Intelligence is a **Claude MCP Plugin** that brings professional-grade SEO analysis directly into your Claude conversations. Instead of juggling multiple SEO tools and dashboards, simply ask Claude to analyze any webpage, and get actionable insights in seconds.
+SEO Intelligence is a Claude plugin that brings 20+ years of SEO expertise directly into your Claude conversations. It ships with **11 auto-activating skills**, **3 autonomous agents**, **8 slash commands**, and **22 MCP tools** — covering every aspect of modern SEO from on-page analysis to AI search visibility.
 
-**No dashboards. No learning curve. Just type.**
-
-The plugin embodies **20+ years of SEO expertise** codified into algorithms — gap analysis, ranking strategies, competitor benchmarking, and prioritized action plans — all powered by real-time SERP data.
+Install once. Claude handles the rest.
 
 ---
 
-## Key Features
+## Skills (Auto-Activating)
 
-### 🔍 On-Page SEO Analysis
-Crawl any URL and get a comprehensive health check: title tags, meta descriptions, heading hierarchy (H1–H6), word count, internal/external links, image alt text coverage, FAQ detection, schema markup, Open Graph tags, and an overall **SEO score (0–100)**.
+Skills activate automatically based on what you're asking — no commands needed. Claude detects SEO-related context and invokes the right skill.
 
-### 📊 Live SERP Data
-Search Google in real time using SerpAPI. See who's ranking for your target keywords, what SERP features are present (featured snippets, People Also Ask, knowledge panels), and where opportunities exist.
+### On-Page SEO
+Crawls any URL for a full SEO health check: title, meta, headings, images, links, schema, Open Graph, and an overall SEO score (0–100).
 
-### ⚔️ Competitor Gap Analysis
-Automatically crawl and analyze the top-ranking pages for any keyword, then compare them against your page across content depth, heading structure, meta tags, FAQ sections, schema markup, link profiles, and image optimization.
+**Triggers:** "check my SEO", "SEO score", "analyze this page", "what's wrong with my meta"
 
-### 📋 Prioritized Ranking Plans
-Get a numbered, actionable plan with specific on-page changes, effort levels (Easy/Medium/Hard), expected impact (High/Medium/Low), and categories (meta, content, structure, schema, technical).
+```
+"Check the SEO of https://myblog.com/post"
+"What's my SEO score for this URL?"
+"Is my title tag optimized?"
+```
 
-### ⚡ Quick Wins
-Instantly surface the **5 easiest fixes with the biggest impact** — perfect for getting started or making quick progress. Examples: missing meta description, broken H1, no FAQ schema, missing alt text.
+---
 
-### 📝 Multi-Keyword Full Audit
-Run a comprehensive SEO audit across multiple target keywords at once. Get per-keyword competitor comparisons, gap analyses, and individual ranking plans — plus an overall site SEO score.
+### Technical SEO
+Audits site infrastructure: sitemap.xml, robots.txt, SSL/HTTPS, redirect chains, canonical tags, mobile viewport, lang attribute.
 
-### 🔑 API Key Validator
-Verify your SerpAPI key is configured correctly before running analyses. Get setup instructions and sign-up links if anything is missing.
+**Triggers:** "technical SEO", "crawl issues", "sitemap", "robots.txt", "canonical tags", "indexing"
 
-### 🛠️ Technical SEO Infrastructure Check
-Check your site's technical SEO health — sitemap.xml, robots.txt, SSL/HTTPS, redirect chains, canonical tags, mobile readiness — and get pass/warn/fail for each check.
+```
+"Run a technical SEO audit on https://mysite.com"
+"Is my site crawlable?"
+"Check my robots.txt"
+```
 
-### 🧠 Search Intent & Content Briefs
-Classify keywords (informational, transactional, etc.) and automatically generate SEO content briefs from competitor analysis — with titles, headings, word counts, and questions.
+---
 
-### 🔗 Keyword Strategy & Clustering
-Group related keywords by SERP overlap to build content clusters. Detect keyword cannibalization where multiple pages compete for the same keyword.
+### Competitor Analysis
+Finds top 3 organic competitors for a keyword, crawls each, and delivers a gap analysis comparing content depth, schema types, heading structure, and more.
 
-### 🤖 AI Citation & AEO Tracking
-Evaluate your domain's visibility across AI search engines like Perplexity, ChatGPT, and Google SGE to measure Answer Engine Optimization (AEO) success.
+**Triggers:** "why does X rank higher", "competitor analysis", "outrank", "gap analysis"
 
-### 🏛️ Entity & Semantic SEO
-Verify official Google Knowledge Graph entities and generate schema markup recommendations to build topical authority.
+```
+"Why is my competitor outranking me for 'best coffee maker'?"
+"Compare my page against the top results for 'project management software'"
+```
 
-### 📈 Predictive Keyword Analytics
-Estimate ranking difficulty, projected traffic, and ROI timelines based on deep competitor and domain authority analysis.
+---
 
-### 📍 Local SEO & Citations
-Check your business ranking in the Google Local 3-Pack, generate exact HTML Geo tags, and get a customized list of top citation directories to ensure NAP consistency.
+### Keyword Research
+Clusters keywords by SERP URL overlap, classifies search intent, estimates difficulty, and detects cannibalization.
 
-### 🛒 E-commerce SEO
-Analyze product pages to validate JSON-LD Product schema against Google Merchant Center and Rich Result guidelines, flagging missing prices, stock, or ratings.
+**Triggers:** "keyword clustering", "search intent", "keyword difficulty", "cannibalization"
 
-### ♿ Accessibility & UX
-Evaluate any webpage for WCAG 2.1 AA accessibility and UX factors that impact Google Page Experience signals (missing alt tags, empty links, restrictive viewports).
+```
+"Cluster these keywords: cold brew coffee, iced coffee, cold brew recipe"
+"What's the search intent for 'best coffee maker 2026'?"
+"Check for keyword cannibalization across my site"
+```
 
-### 🎬 Video & Voice Search SEO
-Ensure your multimedia content is discoverable. Validates `VideoObject` schema for Google Video Carousels and `Speakable` schema for Google Assistant voice answers.
+---
 
-### 🌍 International SEO
-Check your website's global readiness by parsing `<html lang>` declarations and validating `hreflang` clusters (including `x-default` catch-alls and self-referencing tags).
+### Content Strategy
+Generates data-driven content briefs from competitor analysis: title, meta, heading structure, word count, questions to answer, must-cover topics.
 
-## Advanced Workflows
+**Triggers:** "content brief", "blog post outline", "content plan", "what to write"
 
-To see how to combine the 22 tools below for massive impact (like recovering from an Algorithm Update, launching a global multi-lingual site, or dominating Local Maps), **check out [The Ultimate Playbook: SEO Workflows](./WORKFLOWS.md)**!
+```
+"Write a content brief for 'how to make cold brew coffee'"
+"What should I include in an article about project management software?"
+"Give me a content outline for 'best coffee maker'"
+```
+
+---
+
+### Schema Markup
+Generates and validates JSON-LD schema markup. Supports Article, Product, LocalBusiness, FAQ, VideoObject, Speakable, and BreadcrumbList.
+
+**Triggers:** "schema markup", "structured data", "JSON-LD", "rich results", "rich snippets"
+
+```
+"Generate FAQ schema for https://mysite.com/faq"
+"Why aren't my rich results showing in Google?"
+"Add Product schema to my product page"
+```
+
+---
+
+### Local SEO
+Checks Google Local 3-Pack presence, builds citation opportunities list, generates geo meta tags, and creates LocalBusiness schema.
+
+**Triggers:** "local SEO", "Google Maps", "Local Pack", "citations", "local business"
+
+```
+"Does my business appear in the Google 3-Pack for 'dentist near me' in Austin TX?"
+"Build a citation list for my dental clinic"
+"Generate geo meta tags for my business location"
+```
+
+---
+
+### AEO Visibility
+Checks if your domain is cited as a source in Perplexity, ChatGPT, and Google SGE for target queries.
+
+**Triggers:** "AEO", "AI search", "Perplexity", "ChatGPT citations", "answer engine"
+
+```
+"Is my domain cited in Perplexity for 'best coffee maker'?"
+"Check my AEO visibility for target queries"
+"Am I appearing in AI search results?"
+```
+
+---
+
+### Ranking Plan
+Generates a prioritized action plan to rank higher: numbered steps with effort (Easy/Medium/Hard), impact (High/Medium/Low), category, and implementation time.
+
+**Triggers:** "how to rank", "ranking plan", "improve ranking", "what to fix"
+
+```
+"How do I rank higher for 'best coffee maker'?"
+"Give me an SEO action plan for https://mysite.com/coffee"
+"What should I fix to improve my rankings?"
+```
+
+---
+
+### E-Commerce SEO
+Validates Product JSON-LD schema against Google Merchant Center requirements. Flags missing price, availability, ratings, and brand.
+
+**Triggers:** "product page SEO", "ecommerce SEO", "product schema", "Google Merchant"
+
+```
+"Check the product SEO for https://mystore.com/products/matcha"
+"Why isn't my product showing rich results in Google?"
+"Validate my WooCommerce product schema"
+```
+
+---
+
+### International SEO
+Validates HTML `lang` attributes and `hreflang` tags for multilingual sites. Checks self-referencing, x-default, reciprocal tags, and canonical conflicts.
+
+**Triggers:** "hreflang", "international SEO", "multilingual", "country targeting"
+
+```
+"Check my hreflang implementation on https://mystore.com/en-us"
+"Is my international SEO set up correctly?"
+"Validate my multilingual site's language tags"
+```
+
+---
+
+## Commands
+
+Type these slash commands for instant, targeted SEO actions:
+
+### `/seo-intelligence:seo-check <url> <keyword>`
+Quick SEO health check. Returns score, section-by-section analysis, and top 5 quick wins.
+```
+/seo-intelligence:seo-check https://myblog.com/post best coffee maker
+```
+
+### `/seo-intelligence:seo-audit <url> <keyword1>, <keyword2>, ...`
+Full multi-keyword audit. Competitor analysis, gap analysis, and ranking plans per keyword. Overall site SEO score.
+```
+/seo-intelligence:seo-audit https://mysite.com best coffee maker, coffee machine reviews
+```
+
+### `/seo-intelligence:technical-audit <url>`
+Technical SEO infrastructure check. Pass/Warn/Fail for sitemap, robots.txt, SSL, redirects, canonicals, mobile.
+```
+/seo-intelligence:technical-audit https://mysite.com
+```
+
+### `/seo-intelligence:competitor-gap <url> <keyword>`
+Gap analysis against top 3 SERP competitors. Comparison table + top gaps sorted by ranking impact.
+```
+/seo-intelligence:competitor-gap https://mysite.com/coffee best coffee maker
+```
+
+### `/seo-intelligence:ranking-plan <url> <keyword>`
+Prioritized action plan sorted by highest impact + lowest effort. Includes timeline estimate.
+```
+/seo-intelligence:ranking-plan https://mysite.com/coffee best coffee maker
+```
+
+### `/seo-intelligence:keyword-cluster <keywords>`
+Cluster keywords by SERP overlap. Detect cannibalization. Classify search intent per keyword.
+```
+/seo-intelligence:keyword-cluster cold brew coffee, iced coffee, cold brew recipe
+```
+
+### `/seo-intelligence:generate-schema <url> [type]`
+Generate production-ready JSON-LD schema. Auto-detects type or specify: Article, Product, LocalBusiness, FAQ, VideoObject.
+```
+/seo-intelligence:generate-schema https://mysite.com/faq FAQ
+```
+
+### `/seo-intelligence:content-brief <keyword>`
+SEO content brief from competitor analysis: title, meta, headings, word count, PAA questions, must-cover topics.
+```
+/seo-intelligence:content-brief how to make cold brew coffee
+```
+
+---
+
+## Agents
+
+Three autonomous agents handle complex, multi-step SEO tasks end-to-end.
+
+### SEO Auditor
+Runs a complete SEO audit autonomously — on-page analysis, technical check, SERP competitor research, gap analysis, and prioritized action plan. No step-by-step instructions needed.
+
+**When to use:** Full site audits, client reports, pre-launch SEO checks
+
+```
+"Run an SEO audit on https://mysite.com for keywords: best coffee maker, coffee machine reviews"
+"Audit my site at https://mysite.com"
+"Full SEO report for https://mysite.com targeting coffee maker"
+```
+
+**What it delivers:**
+- Overall SEO score (0–100)
+- Technical health checklist (PASS/WARN/FAIL)
+- On-page scores per section
+- Competitor comparison table per keyword
+- Prioritized action plan sorted by ROI
+- Quick wins section
+
+---
+
+### Competitor Analyzer
+Researches top 5 SERP competitors for a keyword, crawls each, and delivers a gap analysis showing exactly what they're doing better than you.
+
+**When to use:** Understanding why you're not ranking, competitive research, market analysis
+
+```
+"Who is outranking me for 'best coffee maker' and why?"
+"Analyze my competitors for 'project management software' vs https://myapp.com"
+"What do the top results for 'cold brew coffee' have that I don't?"
+```
+
+**What it delivers:**
+- Competitor profile table (5 competitors, key metrics)
+- Your page vs. average competitor scores
+- Gap list with opportunity scores
+- Specific implementation instructions per gap
+
+---
+
+### Content Strategist
+Takes a keyword list and produces a complete content strategy — clustering, intent classification, content briefs, cannibalization fixes, and a prioritized content calendar.
+
+**When to use:** Planning content for a new site, building a content calendar, briefing a writing team
+
+```
+"Build a content strategy for: cold brew coffee, iced coffee, cold brew recipe, cold brew maker"
+"Create content briefs for my coffee keyword list"
+"Which of these keywords should I write about first?"
+```
+
+**What it delivers per keyword cluster:**
+- Recommended target page (new or existing)
+- Full content brief (title, meta, headings, word count, questions, topics)
+- Schema type recommendation
+- Estimated ranking difficulty + timeline
+
+**Summary output:**
+- Content calendar priority order
+- Internal linking map between clusters
+- Cannibalization fix recommendations
 
 ---
 
 ## Use Cases
 
-### 1. Blogger / Content Creator
-> *"I just published a new blog post. Is my SEO good enough to rank?"*
+### Blogger / Content Creator
+> *"I just published a new post. Is my SEO good enough to rank?"*
 
-Ask Claude to `analyze_page` your post URL. You'll get an immediate SEO score, a breakdown of what's working (good heading structure, proper meta tags) and what's missing (no FAQ schema, thin content, missing alt text). Then ask for `quick_wins` to get the 5 fastest fixes.
+```
+"Check the SEO of https://myblog.com/best-coffee-brewing-methods and give me quick wins"
+```
 
-**Example prompt:**
-```
-Analyze the SEO of https://myblog.com/best-coffee-brewing-methods and give me quick wins
-```
+Claude crawls the post, returns an SEO score, section-by-section breakdown, and the 5 fastest fixes to improve rankings.
 
 ---
 
-### 2. Startup Founder
-> *"We're launching a SaaS product. How do we stack up against competitors in search?"*
+### Startup Founder
+> *"How does our landing page stack up against competitors in search?"*
 
-Use `compare_with_competitors` to see exactly where your landing page falls short versus the top 3 Google results for your target keyword. The gap analysis reveals whether competitors have longer content, better structured data, more FAQ coverage, or stronger link profiles.
+```
+"Compare https://myapp.com/features against competitors for 'project management software'"
+```
 
-**Example prompt:**
-```
-Compare https://myapp.com/features against competitors for "project management software"
-```
+See exactly where your page falls short — content depth, schema, FAQ coverage, link profiles — and what to fix first.
 
 ---
 
-### 3. Freelance SEO Consultant
-> *"I need to deliver a professional SEO report to my client within the hour."*
+### Freelance SEO Consultant
+> *"I need to deliver a professional audit report to my client within the hour."*
 
-Run a `full_audit` across all of your client's target keywords. Claude generates a structured, comprehensive report with per-keyword rankings, gap analyses, and prioritized action plans — ready to share with your client.
+```
+"Run an SEO audit on https://clientsite.com for keywords: custom wedding cakes, wedding cake designs, best wedding bakery near me"
+```
 
-**Example prompt:**
-```
-Run a full SEO audit of https://clientsite.com for keywords: "custom wedding cakes", "wedding cake designs", "best wedding bakery near me"
-```
+Complete structured audit report with per-keyword rankings, gap analyses, and prioritized action plans.
 
 ---
 
-### 4. E-Commerce Store Owner
-> *"My product pages aren't showing up on Google. What am I doing wrong?"*
+### E-Commerce Store Owner
+> *"My product pages aren't showing in Google. What am I doing wrong?"*
 
-Analyze a product page with `analyze_page` to check for product schema markup, image optimization, content depth, and meta tag quality. Then use `generate_ranking_plan` to get a step-by-step plan for outranking competitors for your product keyword.
+```
+/seo-intelligence:seo-check https://mystore.com/organic-matcha best organic matcha powder
+```
 
-**Example prompt:**
-```
-Create a ranking plan for https://mystore.com/organic-matcha-powder targeting "best organic matcha powder"
-```
+Instant product page SEO score + schema validation against Google Merchant Center requirements.
 
 ---
 
-### 5. Marketing Agency
-> *"We manage 20 client websites. We need to scale SEO audits across all of them."*
+### Content Strategist / Agency
+> *"I need to plan 6 months of content for a client."*
 
-Use Claude to run sequential `full_audit` calls across client domains. Each audit produces a complete report with scores, gaps, and plans. The BYOK model means each client can use their own SerpAPI key, keeping costs transparent.
+```
+"Build a content strategy for these 20 keywords: [list]"
+```
 
-**Example prompt:**
-```
-Run a full SEO audit of https://client1.com for keywords: "dental implants", "cosmetic dentistry"
-```
+The Content Strategist agent clusters keywords, classifies intent, identifies gaps, and delivers production-ready briefs — all in one run.
 
 ---
 
-### 6. Developer Building a Website
-> *"I built a site with React/Next.js but I don't know SEO. Where do I start?"*
+### Developer Building a Site
+> *"I built the site but know nothing about SEO. Where do I start?"*
 
-Start with `quick_wins` to get the 5 most impactful fixes, and run `technical_seo_audit` to ensure your infrastructure (SSL, robots.txt, sitemap) is correct. Then use `analyze_page` for a full breakdown of what search engines see when they crawl your page.
+```
+"Find quick SEO wins and run a technical audit for https://myportfolio.dev"
+```
 
-**Example prompt:**
-```
-Find quick SEO wins and run a technical audit for https://myportfolio.dev
-```
+Immediate technical health check + 5 highest-impact fixes, no SEO expertise required.
 
 ---
 
-### 7. Content Strategist
-> *"I need to plan content clusters and write briefs for the writing team."*
+### Local Business Owner
+> *"Why isn't my business showing up in Google Maps?"*
 
-Use `keyword_cluster` to group your keyword list by SERP overlap, ensuring you aren't creating cannibalizing pages. Then run `content_brief` on each primary keyword to get data-backed briefs with word count targets, headings, and questions to answer.
+```
+"Analyze local SEO for my dental clinic 'Austin Smiles' in Austin TX for keyword 'dentist near me'"
+```
 
-**Example prompt:**
-```
-Cluster these keywords: "cold brew coffee", "iced coffee", "cold brew recipe". Then generate a content brief for "how to make cold brew coffee"
-```
+3-Pack presence check, competitor list, citation opportunities, LocalBusiness schema, and geo meta tags.
 
 ---
 
-## How It Works
+## MCP Tools Reference (22 Tools)
 
-```
-┌─────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│  You ask     │────▶│  Plugin crawls   │────▶│  Claude delivers │
-│  Claude      │     │  pages & SERPs   │     │  insights & plan │
-└─────────────┘     └──────────────────┘     └──────────────────┘
-```
+All skills, agents, and commands are powered by these underlying MCP tools:
 
-1. **You ask** — Type a natural language request in Claude (e.g., "Analyze the SEO of example.com")
-2. **Plugin works** — SEO Intelligence crawls the target page, fetches live SERP data from Google, analyzes competitors, and runs gap analysis
-3. **Claude responds** — You get a structured, actionable report with scores, comparisons, and a prioritized plan
-
----
-
-## Available Tools
-
-| Tool | Description | API Key Required? |
-|------|-------------|:-----------------:|
-| `analyze_page` | Full on-page SEO analysis of any URL | No |
-| `search_serp` | Search Google and get top organic results | Yes (SerpAPI) |
-| `compare_with_competitors` | Gap analysis vs. top-ranking pages | Yes (SerpAPI) |
-| `generate_ranking_plan` | Prioritized action plan for a keyword | Yes (SerpAPI) |
-| `quick_wins` | Top 5 easiest high-impact fixes | No |
-| `full_audit` | Complete multi-keyword SEO audit | Yes (SerpAPI) |
-| `check_api_keys` | Verify your API keys are configured | No |
-| `technical_seo_audit` | Sitemap, robots.txt, SSL, redirects, canonical checks | No |
-| `classify_intent` | Classify search intent (informational/transactional/etc.) | Yes (SerpAPI) |
-| `content_brief` | Generate a content brief from competitor analysis | Yes (SerpAPI) |
-| `keyword_cluster` | Group related keywords by SERP overlap | Yes (SerpAPI) |
-| `detect_keyword_cannibalization` | Find pages competing for the same keywords | Yes (SerpAPI) |
-| `check_aeo_visibility` | Check AI Answer Engine Optimization (AEO) | Optional (Perplexity/OpenAI) |
-| `analyze_entity` | Search Google Knowledge Graph for entity validation | Optional (Google Cloud) |
-| `predict_keyword_difficulty` | Estimate ranking difficulty and traffic potential | Yes (SerpAPI) |
-| `analyze_local_seo` | Check business presence in Google Local 3-Pack | Yes (SerpAPI) |
-| `generate_local_geo_tags` | Create standard HTML geo meta tags for location | No |
-| `generate_citation_opportunities` | Get specialized local citation & NAP directory lists | No |
-| `analyze_product_seo` | Validate e-commerce Product JSON-LD schema | No |
-| `analyze_accessibility` | Audit webpage for WCAG 2.1 AA accessibility and UX | No |
-| `analyze_media_seo` | Validate VideoObject and Speakable schema for rich snippets | No |
-| `analyze_international_seo` | Validate HTML lang and hreflang schema for multi-lingual sites | No |
+| Tool | Description | API Key |
+|------|-------------|---------|
+| `analyze_page_seo` | Full on-page SEO analysis | No |
+| `search_serp` | Live Google SERP results | SerpAPI |
+| `compare_with_competitors` | Competitor gap analysis | SerpAPI |
+| `generate_ranking_plan` | Prioritized ranking action plan | SerpAPI |
+| `get_quick_wins` | Top 5 easiest high-impact fixes | No |
+| `technical_seo_audit` | Sitemap, robots.txt, SSL, redirects | No |
+| `classify_search_intent` | Search intent classification | SerpAPI |
+| `cluster_keywords` | Group keywords by SERP overlap | SerpAPI |
+| `detect_cannibalization` | Find competing pages for same keywords | SerpAPI |
+| `predict_keyword_difficulty` | Difficulty score + ROI projection | SerpAPI |
+| `check_ai_search_visibility` | AEO: Perplexity, ChatGPT, SGE | Optional |
+| `analyze_entity` | Google Knowledge Graph validation | Optional |
+| `check_local_pack` | Google Local 3-Pack presence | SerpAPI |
+| `build_local_citations` | Directory citation list by category | No |
+| `generate_geo_tags` | HTML geo meta tags | No |
+| `ecommerce_product_seo` | Product schema + Merchant Center | No |
+| `analyze_accessibility` | WCAG 2.1 AA + UX audit | No |
+| `analyze_media_seo` | VideoObject + Speakable schema | No |
+| `international_seo` | hreflang + HTML lang validation | No |
 
 ---
 
-## Pricing & Architecture
+## Pricing & API Keys
 
-### BYOK — Bring Your Own Key
+SEO Intelligence is **100% free and open source** (MIT). You provide API keys only for external data services you want to use.
 
-SEO Intelligence uses a **zero-cost architecture**. The plugin itself is **100% free**. You provide your own API keys for external data:
+| Service | Cost | Powers |
+|---------|------|--------|
+| SerpAPI | Free: 100 searches/month | SERP data, competitor discovery, Local Pack |
+| Perplexity | Paid API | AEO visibility (Perplexity) |
+| OpenAI | Paid API | AEO visibility (ChatGPT) |
+| Google Cloud | Free tier | Knowledge Graph entity validation |
 
-| Service | Cost to You | What It Powers |
-|---------|-------------|----------------|
-| Claude | Your existing Anthropic plan | Running the plugin |
-| SerpAPI | Free tier: 100 searches/month | SERP data, competitor discovery, Local Pack |
-| Perplexity (Optional) | Paid API | AEO visibility checking |
-| OpenAI (Optional) | Paid API | ChatGPT indexing evaluation |
-| Google Cloud (Optional) | Free tier | Knowledge Graph Entity validation |
+**10+ tools require zero API keys** — on-page analysis, technical audits, schema generation, citations, accessibility, product schema, media schema, international SEO, and geo tags all work immediately after install.
 
-> **10 tools work with zero configuration** — `analyze_page`, `quick_wins`, `check_api_keys`, `technical_seo_audit`, `generate_local_geo_tags`, `generate_citation_opportunities`, `analyze_product_seo`, `analyze_accessibility`, `analyze_media_seo`, and `analyze_international_seo` require no API keys at all.
-
----
-
-## Getting Started
-
-### Step 1: Install
-
-**From Plugin Marketplace:**
-```
-/plugin install seo-intelligence@claude-plugin-directory
-```
-
-**Or manually:**
-```bash
-git clone https://github.com/trentiums/seo-intelligence.git
-cd seo-intelligence/seo-plugin
-uv sync
-```
-
-### Step 2: Configure Claude Desktop
-
-Add to your Claude Desktop config (`%APPDATA%\Claude\claude_desktop_config.json` on Windows, `~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
-
-```json
-{
-  "mcpServers": {
-    "seo-intelligence": {
-      "command": "uv",
-      "args": ["--directory", "C:/path/to/seo-plugin", "run", "server.py"],
-      "env": {
-        "SERPAPI_KEY": "your_serpapi_key_here",
-        "PERPLEXITY_API_KEY": "your_optional_perplexity_key",
-        "OPENAI_API_KEY": "your_optional_openai_key",
-        "GOOGLE_CLOUD_API_KEY": "your_optional_google_key"
-      }
-    }
-  }
-}
-```
-
-### Step 3: Start Using
-
-Restart Claude Desktop and try:
-```
-"Check my SEO plugin API keys"
-"Analyze the SEO of https://example.com"
-"Find quick SEO wins for https://mysite.com"
-```
+Configure keys after installing: `/plugin config seo-intelligence`
 
 ---
 
 ## FAQ
 
-### Do I need to pay for this plugin?
-**No.** The plugin is free and open-source (MIT License). You only pay for external APIs if you choose to use SERP-based tools. 4 out of 12 tools work with zero configuration.
+**Do I need to pay for this plugin?**
+No. The plugin is free and open-source. External API keys are optional and only needed for SERP-based features.
 
-### What is SerpAPI?
-[SerpAPI](https://serpapi.com/users/sign_up?source=seo-intelligence) provides real-time Google search results data. Their free tier gives you **100 searches/month** — enough to analyze ~30 keywords with competitor comparisons.
+**What is SerpAPI?**
+[SerpAPI](https://serpapi.com/users/sign_up?source=seo-intelligence) provides real-time Google search results. Free tier: 100 searches/month — enough for ~30 keyword analyses with competitor comparisons.
 
-### Does this plugin store my data?
-**No.** SEO Intelligence is completely stateless. It doesn't store, log, or transmit any of your data. All analysis happens in real-time and results are returned directly to your Claude conversation.
+**Does this store my data?**
+No. Completely stateless. No data is stored, logged, or transmitted. All analysis happens in real-time in your Claude session.
 
-### Can I use this without SerpAPI?
-**Yes.** `analyze_page`, `quick_wins`, `check_api_keys`, and `technical_seo_audit` work without any API key. These tools crawl and analyze pages directly without needing SERP data.
+**Can I use it without SerpAPI?**
+Yes. On-page analysis, technical audits, schema generation, accessibility audits, product schema validation, and more work with zero API keys.
 
-### How accurate is the SEO score?
-The SEO score (0–100) evaluates on-page factors: meta tags, heading structure, content depth, schema markup, image optimization, internal/external links, FAQ presence, and Open Graph tags. It reflects on-page health — not domain authority or backlink strength.
-
-### Does it respect robots.txt?
-**Yes.** The crawler uses a respectful User-Agent, honors timeouts, and follows ethical crawling practices.
+**How accurate is the SEO score?**
+The score (0–100) evaluates on-page factors: meta tags, heading structure, content depth, schema, image optimization, internal links, FAQ presence, and Open Graph. It reflects on-page health, not domain authority or backlinks.
 
 ---
 
 ## Links
 
 - **GitHub**: [github.com/trentiums/seo-intelligence](https://github.com/trentiums/seo-intelligence)
+- **Workflows Guide**: [WORKFLOWS.md](./WORKFLOWS.md)
 - **License**: [MIT](LICENSE)
-- **SerpAPI Sign-Up**: [serpapi.com](https://serpapi.com/users/sign_up?source=seo-intelligence)
-- **Author**: Bhargav Patel
-
----
-
-*Built with ❤️ for the Claude plugin ecosystem*
+- **Author**: Bhargav Patel — [github.com/trentiums](https://github.com/trentiums)
