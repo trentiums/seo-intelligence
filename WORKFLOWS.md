@@ -1,40 +1,200 @@
-# The Ultimate Playbook: SEO Intelligence Workflows
+# SEO Intelligence — Workflow Playbook
 
-SEO Intelligence is an orchestration of 22 specialized tools. While each tool provides immense value on its own, true power comes from combining them to automate complex, multi-day marketing workflows into single chat sessions.
+SEO Intelligence ships with **11 skills**, **3 agents**, **8 commands**, and **22 MCP tools**. True power comes from combining them to automate complex, multi-day SEO workflows into single Claude sessions.
 
-Here are the top plays you can run natively in Claude:
+---
 
-## 1. 🏪 The Local Dominance Play
-*Goal: Rank a new local service page (e.g., "Austin Plumber") and build local authority.*
-1. `keyword_cluster` - Find the right variations (emergency, 24/7, commercial) that don't overlap in the SERP.
-2. `detect_keyword_cannibalization` - Check if your existing service pages are already competing for these local terms.
-3. `content_brief` - Generate an outline for the new page based on the top competitors in Austin.
-4. `analyze_local_seo` - Check your current Google Local 3-Pack ranking for the keyword.
-5. `generate_local_geo_tags` - Drop standard location coordinates into the `<head>` of your new page.
-6. `generate_citation_opportunities` - Get a precise list of directories to list your new NAP (Name, Address, Phone) details to boost Local Maps trust.
+## 1. Full Site SEO Audit
 
-## 2. 🛒 The E-commerce Blitz
-*Goal: Optimize a product page to win rich snippets and outperform the top seller.*
-1. `technical_seo_audit` - Ensure the product page isn't blocked by a canonical tag or robots.txt.
-2. `analyze_product_seo` - Parse the JSON-LD schema. Ensure you aren't missing `aggregateRating` or `priceCurrency` (which get you those beautiful stars and prices in Google Search).
-3. `analyze_media_seo` - If you have a product walkthrough video, validate your `VideoObject` schema to win the Video Carousel.
-4. `compare_with_competitors` - Run a gap analysis against the #1 ranking competitor for your product's target keyword to see what on-page elements (H1s, word count) they have that you don't.
+*Goal: Complete audit of a site with competitor analysis and action plan.*
 
-## 3. 🌍 The Global Rollout
-*Goal: Launching a site in a new language/country without duplicate content penalties.*
-1. `analyze_international_seo` - Verify that your `hreflang` tags correctly point to your global sites, complete with the `x-default` catch-all.
-2. `analyze_accessibility` - Because UX and Page Experience signals are global, make sure your newly translated page passes WCAG 2.1 AA (missing alt text, restrictive viewports).
-3. `quick_wins` - Get 5 immediate, actionable fixes tailored to your new market URL.
+**Fastest path — use the agent:**
+```
+"Run an SEO audit on https://mysite.com for keywords: best coffee maker, coffee machine reviews, coffee grinder reviews"
+```
+The **SEO Auditor** agent autonomously runs on-page analysis, technical check, SERP research, competitor gap analysis, and delivers a prioritized action plan.
 
-## 4. 🧠 The "AI Readiness" Audit (Future-Proofing)
-*Goal: Ensure your brand is cited by LLMs, not just Google.*
-1. `check_aeo_visibility` - Ask Perplexity, OpenAI, and Google SGE if they actively cite your brand or product for a specific query.
-2. `analyze_entity` - Check your brand's presence in the Google Knowledge Graph. If you aren't a known entity, AI semantic search engines will ignore you.
-3. `predict_keyword_difficulty` - Find long-tail questions (who, what, when, where) that rank easily; writing content answering these questions is the best way to feed LLM training data.
+**Manual step-by-step:**
+1. `/seo-intelligence:technical-audit https://mysite.com` — infrastructure health first
+2. `/seo-intelligence:seo-check https://mysite.com/page best coffee maker` — on-page score
+3. `/seo-intelligence:competitor-gap https://mysite.com/page best coffee maker` — gap vs. top 3
+4. `/seo-intelligence:ranking-plan https://mysite.com/page best coffee maker` — action plan
 
-## 5. 📉 The Post-Algorithm Drop Rescue
-*Goal: Recover rankings after a core update drops your flagship article.*
-1. `search_serp` - See who exactly took your spot on page 1.
-2. `classify_intent` - Check if the search intent shifted (e.g., what was an "informational" query yesterday is now a "transactional" SERP today based on Google's algorithm tweaks).
-3. `full_audit` - Run a deep 3-keyword crawl on your newly struggling page compared to the new winners.
-4. `generate_ranking_plan` - Build the absolute, prioritized list of exactly what you need to rewrite to get your spot back.
+---
+
+## 2. Content Strategy & Planning
+
+*Goal: Build a full content calendar from a keyword list.*
+
+**Fastest path — use the agent:**
+```
+"Build a content strategy for: cold brew coffee, iced coffee, cold brew recipe, cold brew vs iced coffee, best cold brew maker"
+```
+The **Content Strategist** agent clusters keywords, classifies intent, detects cannibalization, crawls competitors, and delivers production-ready briefs + a prioritized content calendar.
+
+**Manual step-by-step:**
+1. `/seo-intelligence:keyword-cluster cold brew coffee, iced coffee, cold brew recipe` — cluster + intent
+2. `/seo-intelligence:content-brief how to make cold brew coffee` — brief for primary cluster
+3. `/seo-intelligence:competitor-gap https://mysite.com/cold-brew cold brew coffee` — fill content gaps
+4. Ask Claude: "Map internal links between these content clusters"
+
+---
+
+## 3. Competitor Research & Gap Analysis
+
+*Goal: Find exactly why a competitor outranks you and how to close the gap.*
+
+**Fastest path — use the agent:**
+```
+"Who is outranking me for 'best coffee maker' vs https://mysite.com/coffee and why?"
+```
+The **Competitor Analyzer** agent researches top 5 SERP results, crawls each, and delivers a ranked gap analysis with implementation instructions.
+
+**Manual step-by-step:**
+1. `/seo-intelligence:competitor-gap https://mysite.com/coffee best coffee maker`
+2. Drill into top gap: "Generate schema markup for the types my competitors have"
+3. `/seo-intelligence:ranking-plan https://mysite.com/coffee best coffee maker`
+
+---
+
+## 4. Local SEO Dominance
+
+*Goal: Rank a local service page and build Local 3-Pack presence.*
+
+```
+"Analyze local SEO for my plumbing business 'Austin Plumbing Pro' in Austin TX for keywords: plumber near me, emergency plumber, 24 hour plumber"
+```
+
+Full workflow:
+1. `/seo-intelligence:keyword-cluster plumber near me, emergency plumber, 24 hour plumber, commercial plumber` — find non-overlapping keyword variations
+2. Local SEO skill auto-activates: 3-Pack presence check, citation list, LocalBusiness schema, geo tags
+3. `/seo-intelligence:content-brief emergency plumber Austin TX` — page content brief
+4. `/seo-intelligence:generate-schema https://mysite.com/plumber LocalBusiness` — full schema block
+5. Ask Claude: "Give me citation opportunities for Austin Plumbing Pro at 123 Main St, Austin TX"
+
+---
+
+## 5. E-Commerce Product Page Optimization
+
+*Goal: Win rich snippets and outrank the top product competitor.*
+
+```
+/seo-intelligence:seo-check https://mystore.com/organic-matcha best organic matcha powder
+```
+
+Full workflow:
+1. `/seo-intelligence:technical-audit https://mystore.com/organic-matcha` — check canonical, robots.txt not blocking
+2. E-commerce SEO skill auto-activates on product URL: validates Product schema, flags missing price/rating/availability
+3. `/seo-intelligence:competitor-gap https://mystore.com/organic-matcha best organic matcha powder` — gap vs. top sellers
+4. `/seo-intelligence:generate-schema https://mystore.com/organic-matcha Product` — corrected Product JSON-LD
+5. Ask Claude: "Validate VideoObject schema if I have a product demo video"
+
+---
+
+## 6. Post-Algorithm Drop Recovery
+
+*Goal: Recover rankings after a core update tanks a flagship page.*
+
+```
+"Why did https://myblog.com/coffee-guide drop for 'best coffee guide' and how do I recover?"
+```
+
+Full workflow:
+1. Ask Claude: "Search SERP for 'best coffee guide' — who took my spot?" (uses `search_serp`)
+2. `/seo-intelligence:keyword-cluster best coffee guide, coffee guide, coffee buying guide` — check if intent shifted
+3. `/seo-intelligence:competitor-gap https://myblog.com/coffee-guide best coffee guide` — gap vs. new winners
+4. `/seo-intelligence:ranking-plan https://myblog.com/coffee-guide best coffee guide` — exact rewrite priority list
+5. Ask Claude: "What's the search intent for 'best coffee guide' now vs. 6 months ago?"
+
+---
+
+## 7. AI Search Readiness (AEO)
+
+*Goal: Ensure your brand is cited by AI search engines, not just Google.*
+
+```
+"Check my AI search visibility for domain myblog.com for queries: best coffee maker, coffee grinder reviews"
+```
+
+Full workflow:
+1. AEO visibility skill auto-activates: checks Perplexity, ChatGPT, Google SGE citations
+2. Ask Claude: "Check my brand entity in Google Knowledge Graph" (uses `analyze_entity`)
+3. `/seo-intelligence:generate-schema https://myblog.com Article` — add Speakable schema for voice/AI
+4. `/seo-intelligence:content-brief what is the best coffee maker` — target long-tail question formats that feed LLM training
+5. Ask Claude: "What content improvements would increase my AEO citation rate?"
+
+---
+
+## 8. International / Multilingual Launch
+
+*Goal: Launch in a new language/country without duplicate content penalties.*
+
+```
+"Check the international SEO setup for https://mystore.com/en-us before we launch French and German versions"
+```
+
+Full workflow:
+1. International SEO skill auto-activates: validates `hreflang`, `lang` attribute, x-default, reciprocal tags
+2. `/seo-intelligence:technical-audit https://mystore.com/fr-fr` — check new locale pages
+3. `/seo-intelligence:seo-check https://mystore.com/fr-fr meilleure cafetière` — on-page for French keyword
+4. Ask Claude: "Generate corrected hreflang implementation for en-US, fr-FR, de-DE"
+5. Accessibility skill: "Check WCAG compliance on my translated pages"
+
+---
+
+## 9. New Site Launch Checklist
+
+*Goal: Launch a new site with all SEO fundamentals correct from day one.*
+
+```
+"Run a complete launch SEO audit for https://mynewsite.com"
+```
+
+Full workflow:
+1. `/seo-intelligence:technical-audit https://mynewsite.com` — sitemap, robots.txt, SSL, redirects
+2. `/seo-intelligence:seo-check https://mynewsite.com target keyword` — on-page score
+3. `/seo-intelligence:generate-schema https://mynewsite.com` — add appropriate schema
+4. Ask Claude: "Check accessibility and UX issues on https://mynewsite.com"
+5. `/seo-intelligence:keyword-cluster [primary keywords]` — build content cluster map
+6. `/seo-intelligence:content-brief [primary keyword]` — first content brief
+
+---
+
+## 10. Client SEO Reporting (Agency Workflow)
+
+*Goal: Generate professional SEO audit reports for multiple clients fast.*
+
+```
+"Run an SEO audit on https://client1.com for keywords: dental implants, cosmetic dentistry, teeth whitening near me"
+```
+
+Repeat per client. The **SEO Auditor** agent delivers a structured report per client with:
+- Overall SEO score
+- Technical health checklist
+- Per-keyword competitor comparison
+- Prioritized action plan
+- Quick wins section
+
+For a content report:
+```
+"Build a content strategy for https://client1.com targeting: dental implants, cosmetic dentistry, dental veneers"
+```
+
+---
+
+## Quick Reference
+
+| Goal | Best approach |
+|------|--------------|
+| Full site audit | SEO Auditor agent |
+| Content calendar | Content Strategist agent |
+| Competitor research | Competitor Analyzer agent |
+| Quick page check | `/seo-intelligence:seo-check` |
+| Fix technical issues | `/seo-intelligence:technical-audit` |
+| Rank higher for keyword | `/seo-intelligence:ranking-plan` |
+| Plan content | `/seo-intelligence:content-brief` |
+| Group keywords | `/seo-intelligence:keyword-cluster` |
+| Add schema | `/seo-intelligence:generate-schema` |
+| Local SEO | Local SEO skill (auto) |
+| AI search visibility | AEO skill (auto) |
+| International SEO | International SEO skill (auto) |
