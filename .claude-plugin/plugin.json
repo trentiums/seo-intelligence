@@ -1,231 +1,51 @@
 {
-    "name": "seo-intelligence",
-    "display_name": "SEO Intelligence",
-    "version": "2.0.0",
-    "description": "AI-powered SEO analysis, competitor comparison, and ranking plans. Analyze any page's SEO health, compare against top-ranking competitors, and get prioritized action plans to rank higher.",
-    "long_description": "SEO Intelligence turns Claude into your personal SEO analyst. Give it any URL and target keywords, and it will crawl the page, analyze on-page SEO health (title, meta, headings, content, schema, images, links), search Google SERPs to find who's ranking above you, perform a detailed competitor gap analysis, and generate a prioritized action plan to outrank the competition.\n\nBuilt with a BYOK (Bring Your Own Key) architecture — the plugin is 100% free. You provide your own SerpAPI key for SERP data (free tier: 100 searches/month). Ten tools work with zero configuration and no API key required.\n\n20+ years of SEO expertise codified into algorithms: gap analysis, ranking strategies, scoring, and actionable recommendations — all accessible through natural conversation with Claude.",
-    "author": {
-        "name": "Bhargav Patel",
-        "url": "https://github.com/trentiums"
+  "name": "seo-intelligence",
+  "display_name": "SEO Intelligence",
+  "version": "3.0.0",
+  "description": "AI-powered SEO toolkit: audit pages, analyze competitors, generate ranking plans, build schema markup, cluster keywords, and track AI search visibility. 20+ years of SEO expertise in every analysis.",
+  "author": {
+    "name": "Bhargav Patel",
+    "url": "https://github.com/trentiums"
+  },
+  "homepage": "https://github.com/trentiums/seo-intelligence",
+  "repository": "https://github.com/trentiums/seo-intelligence",
+  "license": "MIT",
+  "keywords": [
+    "seo",
+    "search-engine-optimization",
+    "serp",
+    "keyword-research",
+    "competitor-analysis",
+    "on-page-seo",
+    "technical-seo",
+    "ranking",
+    "schema-markup",
+    "content-strategy",
+    "local-seo",
+    "aeo",
+    "keyword-clustering"
+  ],
+  "mcpServers": "./.mcp.json",
+  "userConfig": {
+    "SERPAPI_KEY": {
+      "description": "SerpAPI key for live Google SERP data (free tier: 100 searches/month). Get yours at https://serpapi.com",
+      "sensitive": true,
+      "required": false
     },
-    "homepage": "https://github.com/trentiums/seo-intelligence",
-    "repository": "https://github.com/trentiums/seo-intelligence",
-    "license": "MIT",
-    "keywords": [
-        "seo",
-        "search-engine-optimization",
-        "serp",
-        "keyword-research",
-        "competitor-analysis",
-        "on-page-seo",
-        "off-page-seo",
-        "ranking",
-        "gap-analysis",
-        "technical-seo",
-        "content-strategy",
-        "search-intent",
-        "keyword-clustering",
-        "cannibalization"
-    ],
-    "mcpServers": "./.mcp.json",
-    "userConfig": {
-        "SERPAPI_KEY": {
-            "description": "SerpAPI key for live Google SERP data (free tier: 100 searches/month). Get one at https://serpapi.com/users/sign_up",
-            "sensitive": true
-        },
-        "PERPLEXITY_API_KEY": {
-            "description": "Perplexity API key for AEO visibility tracking (optional)",
-            "sensitive": true
-        },
-        "OPENAI_API_KEY": {
-            "description": "OpenAI API key for ChatGPT AEO analysis (optional)",
-            "sensitive": true
-        },
-        "GOOGLE_CLOUD_API_KEY": {
-            "description": "Google Cloud API key for Knowledge Graph entity analysis (optional)",
-            "sensitive": true
-        }
+    "PERPLEXITY_API_KEY": {
+      "description": "Perplexity API key for AEO visibility tracking (optional)",
+      "sensitive": true,
+      "required": false
     },
-    "use_cases": [
-        {
-            "title": "Blog & Content SEO Health Check",
-            "description": "Analyze any blog post or content page for SEO issues — missing meta descriptions, broken heading hierarchy, no FAQ schema, thin content — and get the 5 quickest fixes."
-        },
-        {
-            "title": "Competitive Gap Analysis",
-            "description": "Compare your page against the top 3 Google results for any keyword. See exactly where you fall short — content depth, schema markup, heading structure, link profiles — and what to fix first."
-        },
-        {
-            "title": "SEO Ranking Action Plan",
-            "description": "Generate a prioritized, step-by-step plan to rank higher for a target keyword, with specific on-page changes, effort/impact scores, and categorized recommendations."
-        },
-        {
-            "title": "Multi-Keyword Full Audit",
-            "description": "Run a comprehensive SEO audit across multiple keywords at once — get per-keyword competitor comparisons, gap analyses, individual ranking plans, and an overall site SEO score."
-        },
-        {
-            "title": "Client SEO Reporting",
-            "description": "Freelancers and agencies can generate structured, professional SEO audit reports for clients — with scores, gap analyses, and prioritized action plans — in minutes."
-        },
-        {
-            "title": "Quick Wins for New Sites",
-            "description": "Developers and site owners new to SEO can instantly discover the 5 easiest, highest-impact fixes to improve search visibility with zero SEO expertise required."
-        },
-        {
-            "title": "Technical SEO Infrastructure Check",
-            "description": "Check your site's technical SEO health — sitemap.xml, robots.txt, SSL/HTTPS, redirect chains, canonical tags, mobile readiness — and get pass/warn/fail for each check."
-        },
-        {
-            "title": "Content Planning & Briefs",
-            "description": "Automatically generate SEO content briefs from competitor analysis — with suggested titles, headings, word count targets, questions to answer, and key topics to cover."
-        },
-        {
-            "title": "Keyword Strategy & Clustering",
-            "description": "Group related keywords by SERP overlap to build content clusters. Detect keyword cannibalization where multiple pages compete for the same keyword."
-        },
-        {
-            "title": "Answer Engine Optimization (AEO)",
-            "description": "Check if your domain is cited as a source in AI search engines like Perplexity, ChatGPT, and Google SGE for target queries."
-        },
-        {
-            "title": "Entity & Semantic SEO",
-            "description": "Map your target topics to official Google Knowledge Graph entities to improve semantic relevance and build topical authority."
-        }
-    ],
-    "features": [
-        {
-            "title": "On-Page SEO Analysis",
-            "description": "Crawl any URL for a complete SEO health check: title, meta, headings, word count, links, images, FAQ, schema, OG tags, and SEO score (0-100)."
-        },
-        {
-            "title": "Live Google SERP Data",
-            "description": "Real-time Google search results via SerpAPI — organic rankings, SERP features, People Also Ask, and featured snippets."
-        },
-        {
-            "title": "Competitor Gap Analysis",
-            "description": "Automatically crawl top-ranking pages and compare against your page across content, structure, meta, schema, links, and images."
-        },
-        {
-            "title": "Prioritized Ranking Plans",
-            "description": "Numbered action plans with specific changes, effort levels (Easy/Medium/Hard), impact (High/Medium/Low), and categories."
-        },
-        {
-            "title": "Quick Wins",
-            "description": "Instantly surface the 5 easiest fixes with the biggest SEO impact — perfect for getting started fast."
-        },
-        {
-            "title": "Multi-Keyword Audit",
-            "description": "Comprehensive audit across multiple target keywords with per-keyword competitor analysis and overall scoring."
-        },
-        {
-            "title": "API Key Validator",
-            "description": "Verify SerpAPI configuration with setup instructions and sign-up links for missing keys."
-        },
-        {
-            "title": "Technical SEO Audit",
-            "description": "Check sitemap.xml, robots.txt, SSL/HTTPS, redirect chains, canonical tags, viewport, lang, and charset — all with actionable recommendations."
-        },
-        {
-            "title": "Search Intent Classification",
-            "description": "Classify keywords as informational, navigational, transactional, or commercial — with confidence scores and recommended content types."
-        },
-        {
-            "title": "Content Brief Generator",
-            "description": "Auto-generate content briefs from competitor analysis: titles, headings, word count targets, questions, and key topics."
-        },
-        {
-            "title": "Keyword Clustering",
-            "description": "Group keywords by SERP URL overlap to identify which keywords can target the same page and avoid cannibalization."
-        },
-        {
-            "title": "Cannibalization Detection",
-            "description": "Find keywords where multiple pages from the same domain compete against each other, with severity ratings and fix recommendations."
-        },
-        {
-            "title": "AI Citation & AEO Check",
-            "description": "Evaluate Answer Engine Optimization (AEO) visibility across Perplexity, OpenAI, and Google SGE."
-        },
-        {
-            "title": "Entity SEO Analysis",
-            "description": "Verify official entities via Google Knowledge Graph to strengthen schema markup and entity associations."
-        },
-        {
-            "title": "Predictive Keyword Difficulty",
-            "description": "Estimate ranking difficulty (0-100) based on SERP analysis, with ROI and timeline projections."
-        },
-        {
-            "title": "Local SEO & 3-Pack Analysis",
-            "description": "Check if a business appears in the Google Local Pack for target keywords in a specific city/region."
-        },
-        {
-            "title": "Local Citation Builder",
-            "description": "Curate a specialized list of directory citations to build with consistent NAP details based on business category."
-        },
-        {
-            "title": "Geo Meta Tag Generator",
-            "description": "Generate standard HTML geo location tags (geo.region, geo.position) for websites to improve local search visibility."
-        },
-        {
-            "title": "E-commerce Product SEO",
-            "description": "Crawl product pages and validate JSON-LD Product schema against Google Merchant Center and Rich Result requirements. Flags missing fields like price, rating, and availability."
-        },
-        {
-            "title": "Accessibility & UX Audit",
-            "description": "Evaluate webpage accessibility (WCAG 2.1 AA) and UX metrics (missing alt text, empty links, missing forms labels, restrictive viewports) that impact Google Page Experience signals."
-        },
-        {
-            "title": "Video & Voice Search SEO",
-            "description": "Validate VideoObject and Speakable JSON-LD schema markup to ensure readiness for Google Video Carousels and Google Assistant voice search."
-        },
-        {
-            "title": "International SEO",
-            "description": "Extract and validate HTML lang attributes and hreflang tags to ensure correct global and regional indexing by search engines."
-        }
-    ],
-    "capabilities": {
-        "mcp": true,
-        "tools": 22,
-        "commands": false,
-        "agents": false,
-        "skills": false
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API key for ChatGPT AEO analysis (optional)",
+      "sensitive": true,
+      "required": false
     },
-    "requirements": {
-        "runtime": "python>=3.10",
-        "package_manager": "uv",
-        "api_keys": [
-            {
-                "name": "SERPAPI_KEY",
-                "description": "SerpAPI key for SERP data (100 free searches/month)",
-                "required": false,
-                "signup_url": "https://serpapi.com/users/sign_up?source=seo-intelligence"
-            },
-            {
-                "name": "PERPLEXITY_API_KEY",
-                "description": "Perplexity API key for AEO visibility tracking (optional)",
-                "required": false,
-                "signup_url": "https://www.perplexity.ai/settings/api"
-            },
-            {
-                "name": "OPENAI_API_KEY",
-                "description": "OpenAI API key for ChatGPT AEO analysis (optional)",
-                "required": false,
-                "signup_url": "https://platform.openai.com/"
-            },
-            {
-                "name": "GOOGLE_CLOUD_API_KEY",
-                "description": "Google Cloud API key for Knowledge Graph (optional)",
-                "required": false,
-                "signup_url": "https://console.cloud.google.com/"
-            }
-        ]
-    },
-    "categories": [
-        "productivity",
-        "web",
-        "analysis"
-    ],
-    "platforms": [
-        "claude-desktop",
-        "claude-code"
-    ]
+    "GOOGLE_CLOUD_API_KEY": {
+      "description": "Google Cloud API key for Knowledge Graph entity analysis (optional)",
+      "sensitive": true,
+      "required": false
+    }
+  }
 }
