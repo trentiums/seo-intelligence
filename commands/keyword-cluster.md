@@ -1,5 +1,5 @@
 ---
-description: Cluster keywords by SERP overlap and detect cannibalization. Usage: /seo-intelligence:keyword-cluster <keyword1>, <keyword2>, ...
+description: "Cluster keywords by SERP overlap and detect cannibalization. Usage: /seo-intelligence:keyword-cluster <keyword1>, <keyword2>, ..."
 ---
 
 Cluster and classify keywords using `cluster_keywords` and `classify_search_intent` MCP tools.

@@ -1,5 +1,5 @@
 ---
-description: Competitor gap analysis against top-ranking pages for a keyword. Usage: /seo-intelligence:competitor-gap <url> <keyword>
+description: "Competitor gap analysis against top-ranking pages for a keyword. Usage: /seo-intelligence:competitor-gap <url> <keyword>"
 ---
 
 Run competitor gap analysis using `search_serp`, `analyze_page_seo`, and `compare_with_competitors` MCP tools.

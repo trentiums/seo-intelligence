@@ -1,5 +1,5 @@
 ---
-description: Generate an SEO content brief from competitor analysis. Usage: /seo-intelligence:content-brief <keyword>
+description: "Generate an SEO content brief from competitor analysis. Usage: /seo-intelligence:content-brief <keyword>"
 ---
 
 Generate an SEO content brief using `search_serp` and `analyze_page_seo` MCP tools.

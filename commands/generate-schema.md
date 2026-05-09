@@ -1,5 +1,5 @@
 ---
-description: Generate production-ready JSON-LD schema markup for any page. Usage: /seo-intelligence:generate-schema <url> [schema-type]
+description: "Generate production-ready JSON-LD schema markup for any page. Usage: /seo-intelligence:generate-schema <url> [schema-type]"
 ---
 
 Generate valid JSON-LD schema markup using the `analyze_page_seo` MCP tool.

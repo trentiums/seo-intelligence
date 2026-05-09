@@ -1,5 +1,5 @@
 ---
-description: Quick on-page SEO health check. Usage: /seo-intelligence:seo-check <url> <keyword>
+description: "Quick on-page SEO health check. Usage: /seo-intelligence:seo-check <url> <keyword>"
 ---
 
 Run a complete on-page SEO health check using the `analyze_page_seo` MCP tool.

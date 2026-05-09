@@ -1,5 +1,5 @@
 ---
-description: Prioritized action plan to rank higher for a target keyword. Usage: /seo-intelligence:ranking-plan <url> <keyword>
+description: "Prioritized action plan to rank higher for a target keyword. Usage: /seo-intelligence:ranking-plan <url> <keyword>"
 ---
 
 Generate a prioritized ranking action plan using the `generate_ranking_plan` MCP tool.

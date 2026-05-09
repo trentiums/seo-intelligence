@@ -1,5 +1,5 @@
 ---
-description: Full technical SEO infrastructure audit. Usage: /seo-intelligence:technical-audit <url>
+description: "Full technical SEO infrastructure audit. Usage: /seo-intelligence:technical-audit <url>"
 ---
 
 Run a technical SEO audit using the `technical_seo_audit` MCP tool.

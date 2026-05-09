@@ -1,6 +1,5 @@
 {
   "name": "seo-intelligence",
-  "display_name": "SEO Intelligence",
   "version": "3.0.0",
   "description": "AI-powered SEO toolkit: audit pages, analyze competitors, generate ranking plans, build schema markup, cluster keywords, and track AI search visibility. 20+ years of SEO expertise in every analysis.",
   "author": {
@@ -28,21 +27,29 @@
   "mcpServers": "./.mcp.json",
   "userConfig": {
     "SERPAPI_KEY": {
+      "type": "string",
+      "title": "SerpAPI Key",
       "description": "SerpAPI key for live Google SERP data (free tier: 100 searches/month). Get yours at https://serpapi.com",
       "sensitive": true,
       "required": false
     },
     "PERPLEXITY_API_KEY": {
+      "type": "string",
+      "title": "Perplexity API Key",
       "description": "Perplexity API key for AEO visibility tracking (optional)",
       "sensitive": true,
       "required": false
     },
     "OPENAI_API_KEY": {
+      "type": "string",
+      "title": "OpenAI API Key",
       "description": "OpenAI API key for ChatGPT AEO analysis (optional)",
       "sensitive": true,
       "required": false
     },
     "GOOGLE_CLOUD_API_KEY": {
+      "type": "string",
+      "title": "Google Cloud API Key",
       "description": "Google Cloud API key for Knowledge Graph entity analysis (optional)",
       "sensitive": true,
       "required": false

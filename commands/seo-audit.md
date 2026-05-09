@@ -1,5 +1,5 @@
 ---
-description: Comprehensive multi-keyword SEO audit with competitor analysis and overall site score. Usage: /seo-intelligence:seo-audit <url> <keyword1>, <keyword2>, ...
+description: "Comprehensive multi-keyword SEO audit with competitor analysis and overall site score. Usage: /seo-intelligence:seo-audit <url> <keyword1>, <keyword2>, ..."
 ---
 
 Run a full multi-keyword SEO audit using `analyze_page_seo`, `search_serp`, `compare_with_competitors`, and `generate_ranking_plan` MCP tools.
